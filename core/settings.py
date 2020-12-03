@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #our installed app
-    'newspaper.apps.NewspaperConfig',   
+    'mainsite.apps.MainsiteConfig',
+    'news.apps.NewsConfig',
+
 ]
 
 MIDDLEWARE = [
