@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #our installed app
+    'newspaper.apps.NewspaperConfig',   
 ]
 
 MIDDLEWARE = [
@@ -117,4 +120,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
+STATIC_ROOT= BASE_DIR / "staticfiles"
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    BASE_DIR / "static",
+    
+)
+
+# Media Folder Settings
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = '/media/'

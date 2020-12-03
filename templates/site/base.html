@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+        {% include 'site/includes/_head.html' %}
+        <title> 
+             {% block title %}  {% endblock %} ITECH
+        </title>
+    </head>
+<body id="page-top" data-spy="scroll" data-target=".navbar">
+    <div id="main-wrapper">
+        {% include 'site/includes/_header.html' with Category=Category %}
+
+        {% block content %}
+
+        {% endblock %}
+
+        {% include 'site/includes/_mail_subscriptions.html' %}
+        {% include 'site/includes/_footer.html' %}
+        {% include 'site/includes/_uc_mobile_menu.html' %}
+    </div>
+        {% include 'site/includes/_scripts.html' %}
+        {% include 'site/includes/_notification.html' %}
+    
+</body>
+</html>
