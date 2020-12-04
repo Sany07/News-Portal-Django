@@ -104,12 +104,10 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                                 <ul class="nav navbar-nav main-nav">
-                                    <li class="active"><a href="index.html">News</a></li>
-                                    <li><a href="category.html">Mobile</a></li>
-                                    <li><a href="blog.html">Tablet</a></li>
-                                    <li><a href="blog.html">Gadgets</a></li>
-                                    <li><a href="blog.html">Camera</a></li>
-                                    <li><a href="blog.html">Design</a></li>
+                                    {% for category in categories %}
+                                        <li class="active"><a href="index.html">{{ category }}</a></li>
+
+                                    {% endfor %}
                                     <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown"
                                             class="dropdown-toggle">More
                                             <span><i class="fa fa-angle-down"></i></span></a>
