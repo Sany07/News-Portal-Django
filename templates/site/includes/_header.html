@@ -1,3 +1,5 @@
+{% load static %}
+
 <div id="preloader">
     <div id="status">
         <div class="status-mes"></div>
@@ -38,7 +40,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="logo">
-                                <a href="index.html"><img src="assets/img/logo.png" alt="Tech NewsLogo"></a>
+                                <a href="index.html"><img src="{% static 'assets/img/logo.png' %}" alt="Tech NewsLogo"></a>
                             </div>
                             <!-- Logo Section -->
                         </div>
@@ -122,7 +124,7 @@
                                                         <li><a href="#">Responsive Design</a></li>
                                                         <li><a href="#">Pixel Perfect Graphics</a></li>
                                                     </ul>
-                                                    <ul class="col-sm-3">
+                                                    <!-- <ul class="col-sm-3">
                                                         <li class="dropdown-header">Widget Haeder</li>
                                                         <li><a href="#">Awesome Features</a></li>
                                                         <li><a href="#">Clean Interface</a></li>
@@ -145,7 +147,7 @@
                                                         <li><a href="#">Available Possibilities</a></li>
                                                         <li><a href="#">Responsive Design</a></li>
                                                         <li><a href="#">Pixel Perfect Graphics</a></li>
-                                                    </ul>
+                                                    </ul> -->
                                                 </div>
                                             </li>
                                         </ul>
