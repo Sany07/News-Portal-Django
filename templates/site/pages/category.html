@@ -8,9 +8,9 @@
         <div class="row">
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Tech</a></li>
-                <li class="active"><a href="#">Mobile</a></li>
+                <!-- <li><a href="#">News</a></li>
+                <li><a href="#">Tech</a></li> -->
+                <li class="active"><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
             </ol>
         </div>
     </div>
@@ -19,59 +19,56 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <div class="entity_wrapper">
-                <div class="entity_title header_purple">
-                    <h1><a href="category.html" target="_blank">Mobile</a></h1>
-                </div>
-                <!-- entity_title -->
-
-                <div class="entity_thumb">
-                    <img class="img-responsive" src="{% static 'assets/img/category_img_top.jpg' %}" alt="feature-top">
-                </div>
-                <!-- entity_thumb -->
-
-                <div class="entity_title">
-                    <a href="single.html" target="_blank">
-                        <h3> Airbnb launches photo-centric app for iPads and Android
-                            tablets. </h3>
-                    </a>
-                </div>
-                <!-- entity_title -->
-
-                <div class="entity_meta">
-                    <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                </div>
-                <!-- entity_meta -->
-
-                <div class="entity_content">
-                    Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate
-                    B2C users
-                    after installed base benefits. Dramatically visualize customer directed convergence without
-                    revolutionary ROI.
-                </div>
-                <!-- entity_content -->
-
-                <div class="entity_social">
-                    <span><i class="fa fa-share-alt"></i>424 <a href="#">Shares</a> </span>
-                    <span><i class="fa fa-comments-o"></i>4 <a href="#">Comments</a> </span>
-                </div>
-                <!-- entity_social -->
-
+            <div class="entity_title header_purple">
+                <h1><a href="category.html" target="_blank">Mobile</a></h1>
             </div>
-            <!-- entity_wrapper -->
 
+            <!-- entity_title -->
             <div class="row">
+                {% for news in news_list %}
+                {% if forloop.first %}
+                    <div class="entity_wrapper">
+                        <div class="entity_thumb">
+                            <img class="img-responsive" style="width: 775px; max-height:450px;" src="{{ news.thumbnail.url }}"
+                                alt="feature-top">
+                        </div>
+                        <!-- entity_thumb -->
+        
+                        <div class="entity_title">
+                            <a href="single.html" target="_blank">
+                                <h3> {{ news.title }} </h3>
+                            </a>
+                        </div>
+                        <!-- entity_title -->
+        
+                        <div class="entity_meta">
+                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
+                        </div>
+                        <!-- entity_meta -->
+        
+                        <div class="entity_content">
+                            {{ news.description|truncatechars:255 }}
+                        </div>
+                        <!-- entity_content -->
+        
+                        <div class="entity_social">
+                            <span><i class="fa fa-share-alt"></i>424 <a href="#">Shares</a> </span>
+                            <span><i class="fa fa-comments-o"></i>4 <a href="#">Comments</a> </span>
+                        </div>
+                        <!-- entity_social -->
+        
+                    </div>
+                    <!-- entity_wrapper -->
+                    {% else %}
                 <div class="col-md-6">
-                    <div class="category_article_body">
+                    <div class="category_article_body  mb-5">
                         <div class="top_article_img">
-                            <img class="img-fluid" src="{% static 'assets/img/category_img1.jpg' %}" alt="feature-top">
+                            <img class="img-fluid" style="width: 360px; height:250px;" src="{{ news.thumbnail.url }}" alt="feature-top">
                         </div>
                         <!-- top_article_img -->
 
                         <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
+                            <h5><a href="single.html" target="_blank">{{ news.title }} </a></h5>
                         </div>
                         <!-- category_article_title -->
 
@@ -81,489 +78,40 @@
                         <!-- article_date -->
 
                         <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
+                            {{ news.description|truncatechars:255 }}
                         </div>
                         <!-- category_article_content -->
 
                         <div class="article_social">
                             <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
+                            <span><i class="fa fa-comments-o"></i><a href="#">{{ forloop.counter }}</a> Comments</span>
                         </div>
                         <!-- article_social -->
 
                     </div>
                     <!-- category_article_body -->
-
                 </div>
-                <!-- col-md-6 -->
-
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img2.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- category_article_title -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- article_date -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- category_article_content -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- article_social -->
-
+                {% if forloop.counter0|divisibleby:2 %}
+                <div class="col-md-12 mt-5 mb-5">
+                    <div class="widget_advertisement">
+                        <img class="img-responsive" src="{% static 'assets/img/category_advertisement.jpg' %}"
+                            alt="feature-top">
                     </div>
-                    <!-- category_article_body -->
-
                 </div>
+                {% endif %}
+                {% endif %}
+
+                {% endfor %}
+
                 <!-- col-md-6 -->
 
             </div>
             <!-- row -->
 
-            <div class="widget_advertisement">
-                <img class="img-responsive" src="{% static 'assets/img/category_advertisement.jpg' %}" alt="feature-top">
-            </div>
+
             <!-- widget_advertisement -->
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img3.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- row -->
 
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- row -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- row -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- row -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- row -->
-
-                    </div>
-                    <!-- row -->
-
-                </div>
-                <!-- row -->
-
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img4.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- category_article_title -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- article_date -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- category_article_content -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- category_article_body -->
-
-                </div>
-                <!-- col-md-6 -->
-
-            </div>
-            <!-- row -->
-
-            <div class="widget_advertisement">
-                <img class="img-responsive" src="{% static 'assets/img/category_advertisement.jpg' %}" alt="feature-top">
-            </div>
-            <!-- col-md-6 -->
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img5.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- category_article_title -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- article_date -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- category_article_content -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- category_article_body -->
-
-                </div>
-                <!-- col-md-6 -->
-
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img6.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- category_article_title -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- article_date -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- category_article_content -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- category_article_body -->
-
-                </div>
-                <!-- col-md-6 -->
-
-            </div>
-            <!-- row -->
-
-            <div class="widget_advertisement">
-                <img class="img-responsive" src="{% static 'assets/img/category_advertisement.jpg' %}" alt="feature-top">
-            </div>
-            <!-- col-md-6 -->
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img7.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- top_article_img -->
-
-                    </div>
-                    <!-- top_article_img -->
-
-                </div>
-                <!-- top_article_img -->
-
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img8.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- category_article_title -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- article_date -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- category_article_content -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- category_article_body -->
-
-                </div>
-                <!-- col-md-6 -->
-
-            </div>
-            <!-- row -->
-
-            <div class="widget_advertisement">
-                <img class="img-responsive" src="{% static 'assets/img/category_advertisement.jpg' %}" alt="feature-top">
-            </div>
-            <!-- col-md-6 -->
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img7.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- top_article_img -->
-
-                    </div>
-                    <!-- top_article_img -->
-
-                </div>
-                <!-- top_article_img -->
-
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img8.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- category_article_title -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- article_date -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- category_article_content -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- category_article_body -->
-
-                </div>
-                <!-- col-md-6 -->
-
-            </div>
-            <!-- row -->
-
-            <div class="widget_advertisement">
-                <img class="img-responsive" src="{% static 'assets/img/category_advertisement.jpg' %}" alt="feature-top">
-            </div>
-            <!-- col-md-6 -->
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img7.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- top_article_img -->
-
-                    </div>
-                    <!-- top_article_img -->
-
-                </div>
-                <!-- top_article_img -->
-
-                <div class="col-md-6">
-                    <div class="category_article_body">
-                        <div class="top_article_img">
-                            <img class="img-responsive" src="{% static 'assets/img/category_img8.jpg' %}" alt="feature-top">
-                        </div>
-                        <!-- top_article_img -->
-
-                        <div class="category_article_title">
-                            <h5><a href="single.html" target="_blank">Airbnb launches photo-centric app for iPads and
-                                    Android
-                                    tablets. </a></h5>
-                        </div>
-                        <!-- category_article_title -->
-
-                        <div class="article_date">
-                            <a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                        </div>
-                        <!-- article_date -->
-
-                        <div class="category_article_content">
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically
-                            visualize customer directed convergence without revolutionary ROI.
-                        </div>
-                        <!-- category_article_content -->
-
-                        <div class="article_social">
-                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a> Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- category_article_body -->
-
-                </div>
-                <!-- col-md-6 -->
-
-            </div>
-            <!-- row -->
 
             <nav aria-label="Page navigation" class="pagination_section">
                 <ul class="pagination">

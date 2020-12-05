@@ -105,7 +105,7 @@
                             <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                                 <ul class="nav navbar-nav main-nav">
                                     {% for category in categories %}
-                                        <li class="active"><a href="index.html">{{ category }}</a></li>
+                                        <li class="active"><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
 
                                     {% endfor %}
                                     <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown"

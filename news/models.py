@@ -3,7 +3,6 @@ from django.shortcuts import reverse
 from django.utils.text import slugify
 
 
-
 class Category(models.Model):
     name = models.CharField(max_length=20)
     slug = models.SlugField(unique=True,null=True, blank=True, max_length=255)
@@ -17,6 +16,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("newspaper:category", kwargs={'slug': self.slug})
 
 class News(models.Model):
     title = models.CharField(max_length=250,blank=False)
