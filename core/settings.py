@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'mainsite.apps.MainsiteConfig',
     'news.apps.NewsConfig',
 
+    #3rd party
+    'taggit'
+
 ]
 
 MIDDLEWARE = [

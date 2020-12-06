@@ -11,12 +11,11 @@
             <div class="col-md-8">
                 <div class="entity_wrapper">
                     <div class="entity_title">
-                        <h1><a href="#">Chevrolet car-saving technology delivers 'superhuman' sight when you need it
-                                most</a></h1>
+                        <h1><a href="#">{{ news.title }}</a></h1>
                     </div>
                     <!-- entity_title -->
 
-                    <div class="entity_meta"><a href="#" target="_self">10Aug- 2015</a>, by: <a href="#"
+                    <div class="entity_meta"><a href="#" target="_self">{{ news.timestamp|date:"j M Y" }}</a>, by: <a href="#"
                             target="_self">Eric joan</a>
                     </div>
                     <!-- entity_meta -->
@@ -48,21 +47,16 @@
                     <!-- entity_social -->
 
                     <div class="entity_thumb">
-                        <img class="img-responsive" src="{% static 'assets/img/category_img_top.jpg' %}"
+                        <img class="img-responsive" style="width: 775px; max-height:450px;" src="{{ news.thumbnail.url }}"
                             alt="feature-top">
                     </div>
                     <!-- entity_thumb -->
 
                     <div class="entity_content">
                         <p>
-                            But I must explain to you how all this mistaken idea of denouncing pleasure and praising
-                            pain was born and I will give you a complete account of the system, and expound the
-                            actual teachings of the great explorer of the truth, the master-builder of human
-                            happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure,
-                            but because those who do not know how to pursue pleasure rationally encounter
-                            consequences that are extremely painful.
+                            {{ news.description }}
                         </p>
-
+<!-- 
                         <p>
                             Nor again is there anyone who loves or pursues or desires to obtain pain of itself,
                             because it is pain, but because occasionally circumstances occur in which toil and pain
@@ -94,16 +88,17 @@
                             happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure,
                             but because those who do not know how to pursue pleasure rationally encounter
                             consequences that are extremely painful.
-                        </p>
+                        </p> -->
                     </div>
                     <!-- entity_content -->
 
                     <div class="entity_footer">
                         <div class="entity_tag">
-                            <span class="blank"><a href="#">Tech</a></span>
-                            <span class="blank"><a href="#">Transport</a></span>
-                            <span class="blank"><a href="#">Mobile</a></span>
-                            <span class="blank"><a href="#">Gadgets</a></span>
+
+                            {% for tag in news.tags.all %}
+                            <span class="blank"><a href="#">{{ tag }}</a></span>
+                            {% endfor %}
+
                         </div>
                         <!-- entity_tag -->
 

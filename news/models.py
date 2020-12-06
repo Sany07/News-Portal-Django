@@ -1,7 +1,11 @@
 from django.db import models
 from django.shortcuts import reverse
 from django.utils.text import slugify
+from django.conf import settings
 
+User = settings.AUTH_USER_MODEL
+
+from taggit.managers import TaggableManager
 
 class Category(models.Model):
     name = models.CharField(max_length=20)
@@ -20,6 +24,8 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse("newspaper:category", kwargs={'slug': self.slug})
 
+
+
 class News(models.Model):
     title = models.CharField(max_length=250,blank=False)
     slug = models.SlugField(unique=True,null=True, blank=True, max_length=255)
@@ -29,7 +35,8 @@ class News(models.Model):
     # ratings = GenericRelation(Rating, related_query_name='ratings')
     is_published = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
-    # instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='instructor')
+    # instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
+    tags = TaggableManager()
 
     class Meta:
         verbose_name = "News"
@@ -39,6 +46,6 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
-    # def get_absolute_url(self):
-    #     return reverse("courses:single-course", kwargs={'slug': self.slug})
+    def get_absolute_url(self):
+        return reverse("newspaper:single-post", kwargs={'slug': self.slug})
 
