@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #our installed app
     'mainsite.apps.MainsiteConfig',
     'news.apps.NewsConfig',
+    'comment.apps.CommentConfig',
 
     #3rd party
     'taggit'

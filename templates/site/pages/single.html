@@ -162,7 +162,7 @@
                         <h2>Readers Comment</h2>
                     </div>
                     <!-- entity_title -->
-
+                    {% for comment in comments %}
                     <div class="media">
                         <div class="media-left">
                             <a href="#">
@@ -172,15 +172,14 @@
                             </a>
                         </div>
                         <div class="media-body">
-                            <h2 class="media-heading"><a href="#">Sr. Ryan</a></h2>
-                            But who has any right to find fault with a man who chooses to enjoy a pleasure that has
-                            no annoying consequences, or one who avoids a pain that produces no resultant pleasure?
-
+                            <h2 class="media-heading"><a href="#">Sr. Ryan</a></h2> 
+                                {{ comment.comment }}
                             <div class="entity_vote">
                                 <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
                                 <a href="#"><span class="reply_ic">Reply </span></a>
                             </div>
+                            {% for reply in comment.replies.all %}
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#">
@@ -191,9 +190,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h2 class="media-heading"><a href="#">Admin</a></h2>
-                                    But who has any right to find fault with a man who chooses to enjoy a pleasure
-                                    that has no annoying consequences, or one who avoids a pain that produces no
-                                    resultant pleasure?
+                                        {{ reply.comment }}
 
                                     <div class="entity_vote">
                                         <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
@@ -202,31 +199,11 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
 
                     </div>
-                    <!-- media end -->
-
-                    <div class="media">
-                        <div class="media-left">
-                            <a href="#">
-                                <img alt="64x64" class="media-object"
-                                    data-src="{% static 'assets/img/reader_img3.jpg' %}"
-                                    src="{% static 'assets/img/reader_img3.jpg' %}" data-holder-rendered="true">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h2 class="media-heading"><a href="#">S. Joshep</a></h2>
-                            But who has any right to find fault with a man who chooses to enjoy a pleasure that has
-                            no annoying consequences, or one who avoids a pain that produces no resultant pleasure?
-
-                            <div class="entity_vote">
-                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                                <a href="#"><span class="reply_ic">Reply </span></a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                     <!-- media end -->
                 </div>
                 <!--Readers Comment-->
@@ -244,17 +221,12 @@
                     <!--Entity Title -->
 
                     <div class="entity_comment_from">
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="inputName" placeholder="Name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-                            </div>
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <input type="hidden" name="post" id="id_post" value="{{ news.id }}">
                             <div class="form-group comment">
-                                <textarea class="form-control" id="inputComment" placeholder="Comment"></textarea>
+                                <textarea class="form-control" name="comment" id="id_comment" placeholder="Comment"></textarea>
                             </div>
-
                             <button type="submit" class="btn btn-submit red">Submit</button>
                         </form>
                     </div>
