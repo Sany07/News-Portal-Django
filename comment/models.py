@@ -11,7 +11,7 @@ class Comment(models.Model):
     comment = models.CharField(max_length=250,blank=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, blank=True, null=True , on_delete=models.CASCADE, related_name='user')
-    post = models.ForeignKey(News, on_delete=models.CASCADE, related_name='news')
+    post = models.ForeignKey(News, on_delete=models.CASCADE, related_name='post')
     reply = models.ForeignKey('self',blank=True, null=True ,on_delete=models.CASCADE, related_name='replies')
 
     class Meta:
