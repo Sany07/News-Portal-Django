@@ -7,7 +7,9 @@ class CommentModelForm(forms.ModelForm):
         model = Comment
         fields = [
             'post',
-            'comment',            
+            'comment',    
+            'reply',    
+                    
         ]
 
 

@@ -173,7 +173,7 @@
                             <div class="entity_vote">
                                 <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                                <a href="#"><span class="reply_ic">Reply </span></a>
+                                <button class="btn  btn-xs reply_ic">Reply</button>
                             </div>
                             {% for reply in comment.replies.all %}
                             <div class="media">
@@ -191,13 +191,36 @@
                                     <div class="entity_vote">
                                         <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
                                         <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                                        <a href="#"><span class="reply_ic">Reply </span></a>
+                                        <span class="reply_ic">Reply </span>
                                     </div>
                                 </div>
                             </div>
-                            {% endfor %}
-                        </div>
 
+                            {% endfor %}
+
+                        
+                            <div class="entity_comments toggle-rp" style="display: none;">
+                                <div class="entity_inner__title header_black">
+                                    <h2>Add a Reply</h2>
+                                </div>
+                                <!--Entity Title -->
+            
+                                <div class="entity_comment_from">
+                                    <form method="POST" action="">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="reply" id="id_reply" value="{{ comment.id }}">
+                                        <input type="hidden" name="post" id="id_post" value="{{ news.id }}">
+                                        <div class="form-group comment">
+                                            <textarea class="form-control" name="comment" id="id_comment" placeholder="Comment"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-submit red">Submit</button>
+
+                                    </form>
+                                </div>
+                                <!--Entity Comments From -->
+            
+                            </div>
+                    </div>
                     </div>
                     {% endfor %}
                     <!-- media end -->
@@ -244,4 +267,24 @@
 </section>
 <!-- Entity Section Wrapper -->
 
+
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+    $('.reply_ic').click(function(){
+        console.log($(this).parent().parent().parent().find('.toggle-rp').fadeToggle());
+        $(this).find('.toggle-rp').fadeToggle();
+    });
+
+</script>
+
+<style>
+    .btn.btn-xs.reply_ic {
+    padding: 0px 8px;
+}
+</style>
 {% endblock %}
