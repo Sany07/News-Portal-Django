@@ -1,6 +1,5 @@
 from django.db import models
 from django.shortcuts import reverse
-from django.utils.text import slugify
 from django.conf import settings
 
 User = settings.AUTH_USER_MODEL

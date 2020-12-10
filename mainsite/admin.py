@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import SiteSettings, HomePageSettings
+
+
+admin.site.register(SiteSettings)
+admin.site.register(HomePageSettings)
+

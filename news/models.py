@@ -5,6 +5,7 @@ from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
 
+# from comment.models import Comment
 from taggit.managers import TaggableManager
 
 class Category(models.Model):
@@ -49,3 +50,8 @@ class News(models.Model):
     def get_absolute_url(self):
         return reverse("newspaper:single-post", kwargs={'slug': self.slug})
 
+    def get_comment_count(self):
+        # comment_count = News.objects.all().annotate(Count('post__id')).order_by('-post__id__count') 
+        most_commented= self.post.values('post__id').aggregate(models.Count('post__id'))
+        
+        return most_commented['post__id__count']
