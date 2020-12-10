@@ -141,13 +141,14 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="category_section mobile">
-                    <div class="article_title header_purple">
-                        <h2><a href="category.html" target="_self">Mobile</a></h2>
-                    </div>
+
                     <!----article_title------>
 
                     {% for post_catalog_one in post_catalog_oned %}
                         {% if forloop.first %}
+                        <div class="article_title header_purple">
+                            <h2><a href="{{ post_catalog_one.thumbnail.url }}" target="_self">{{ post_catalog_one.category }}</a></h2>
+                        </div>
                         <div class="category_article_wrapper">
                             <div class="row">
                             <div class="col-md-6">
@@ -242,14 +243,16 @@
                 <!-- Mobile News Section -->
 
                 <div class="category_section tablet">
-                    <div class="article_title header_pink">
-                        <h2><a href="category.html" target="_self">Tablet Pc</a></h2>
-                    </div>
                     <!-- Mobile News Section -->
 
                     <div class="category_article_wrapper">
                         <div class="row">
                             {% for post_catalog_two in post_catalog_two %}
+                            {% if forloop.first %}
+                            <div class="article_title header_pink" style="margin-left:15px;margin-right:15px">
+                                <h2><a href="{{ post_catalog_two.category.get_absolute_url }}" target="_self">{{ post_catalog_two.category }}</a></h2>
+                            </div>
+                            {% endif %}
                             <div class="col-md-6">
                                 <div class="category_article_body">
                                     <div class="top_article_img">
@@ -449,11 +452,14 @@
                 <!-- Gadget News Section -->
 
                 <div class="category_section camera">
-                    <div class="article_title header_orange">
-                        <h2><a href="category.html" target="_self">Camera</a></h2>
-                    </div>
+ 
                     <!-- article_title -->
                     {% for post_catalog_four in post_catalog_four %}
+                    {% if forloop.first %}
+                    <div class="article_title header_orange">
+                        <h2><a href="{{ post_catalog_four.category.get_absolute_url }}" target="_self">{{ post_catalog_four.category }}</a></h2>
+                    </div>
+                    {% endif %}
                     <div class="category_article_wrapper">
                         <div class="row">
                             <div class="col-md-5">
@@ -501,7 +507,7 @@
                     </div>
                     {% endfor %}
                     <!-- category_article_wrapper -->
-                    <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
+                    <p class="divider"><a href="#">sdsMore News&nbsp;&raquo;</a></p>
                 </div>
                 <!-- Camera News Section -->
 
