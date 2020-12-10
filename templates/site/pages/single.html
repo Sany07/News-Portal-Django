@@ -11,8 +11,8 @@
                     </div>
                     <!-- entity_title -->
 
-                    <div class="entity_meta"><a href="#" target="_self">{{ news.timestamp|date:"j M Y" }}</a>, by: <a href="#"
-                            target="_self">Eric joan</a>
+                    <div class="entity_meta"><a href="#" target="_self">{{ news.timestamp|date:"j M Y" }}</a>, by: <a
+                            href="#" target="_self">Eric joan</a>
                     </div>
                     <!-- entity_meta -->
 
@@ -43,8 +43,8 @@
                     <!-- entity_social -->
 
                     <div class="entity_thumb">
-                        <img class="img-responsive" style="width: 775px; max-height:450px;" src="{{ news.thumbnail.url }}"
-                            alt="feature-top">
+                        <img class="img-responsive" style="width: 775px; max-height:450px;"
+                            src="{{ news.thumbnail.url }}" alt="feature-top">
                     </div>
                     <!-- entity_thumb -->
 
@@ -52,7 +52,7 @@
                         <p>
                             {{ news.description }}
                         </p>
-<!-- 
+                        <!-- 
                         <p>
                             Nor again is there anyone who loves or pursues or desires to obtain pain of itself,
                             because it is pain, but because occasionally circumstances occur in which toil and pain
@@ -117,29 +117,32 @@
                     <!-- entity_title -->
 
                     <div class="row">
-                        
+
                         <div class="col-md-12">
                             {% for related_post in related_posts %}
                             <div class="col-md-6">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object" style="width: 122px; height: 122px;"
-                                            src="{{ related_post.thumbnail.url }}"
-                                            alt="Generic placeholder image"></a>
-                                </div>
-                                <div class="media-body">
-                                    <span class="tag purple"><a href="category.html" target="_self">{{ related_post.category }}</a></span>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" style="width: 122px; height: 122px;"
+                                                src="{{ related_post.thumbnail.url }}"
+                                                alt="Generic placeholder image"></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="tag purple"><a href="category.html"
+                                                target="_self">{{ related_post.category }}</a></span>
 
-                                    <h3 class="media-heading"><a href="{{ related_post.get_absolute_url }}" target="_self">{{ related_post.title }}</a></h3>
-                                    <span class="media-date">{{ related_post.timestamp|date:"j M Y" }}, by: <a href="#">Eric
-                                            joan</a></span>
+                                        <h3 class="media-heading"><a href="{{ related_post.get_absolute_url }}"
+                                                target="_self">{{ related_post.title }}</a></h3>
+                                        <span class="media-date">{{ related_post.timestamp|date:"j M Y" }}, by: <a
+                                                href="#">Eric
+                                                joan</a></span>
 
-                                    <div class="media_social">
-                                        <span><a href="#"><i class="fa fa-share-alt"></i>424</a> Shares</span>
-                                        <span><a href="#"><i class="fa fa-comments-o"></i>4</a> Comments</span>
+                                        <div class="media_social">
+                                            <span><a href="#"><i class="fa fa-share-alt"></i>424</a> Shares</span>
+                                            <span><a href="#"><i class="fa fa-comments-o"></i>4</a> Comments</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                             {% endfor %}
                         </div>
@@ -168,8 +171,8 @@
                             </a>
                         </div>
                         <div class="media-body">
-                            <h2 class="media-heading"><a href="#">{{ comment.user.username|capfirst }}</a></h2> 
-                                {{ comment.comment }}
+                            <h2 class="media-heading"><a href="#">{{ comment.user.username|capfirst }}</a></h2>
+                            {{ comment.comment }}
                             <div class="entity_vote">
                                 <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
@@ -186,7 +189,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h2 class="media-heading"><a href="#">{{ comment.user.username|capfirst }}</a></h2>
-                                        {{ reply.comment }}
+                                    {{ reply.comment }}
 
                                     <div class="entity_vote">
                                         <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
@@ -198,29 +201,30 @@
 
                             {% endfor %}
 
-                        
+
                             <div class="entity_comments toggle-rp" style="display: none;">
                                 <div class="entity_inner__title header_black">
                                     <h2>Add a Reply</h2>
                                 </div>
                                 <!--Entity Title -->
-            
+
                                 <div class="entity_comment_from">
                                     <form method="POST" action="">
                                         {% csrf_token %}
                                         <input type="hidden" name="reply" id="id_reply" value="{{ comment.id }}">
                                         <input type="hidden" name="post" id="id_post" value="{{ news.id }}">
                                         <div class="form-group comment">
-                                            <textarea class="form-control" name="comment" id="id_comment" placeholder="Comment"></textarea>
+                                            <textarea class="form-control" name="comment" id="id_comment"
+                                                placeholder="Comment"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-submit red">Submit</button>
 
                                     </form>
                                 </div>
                                 <!--Entity Comments From -->
-            
+
                             </div>
-                    </div>
+                        </div>
                     </div>
                     {% endfor %}
                     <!-- media end -->
@@ -244,7 +248,8 @@
                             {% csrf_token %}
                             <input type="hidden" name="post" id="id_post" value="{{ news.id }}">
                             <div class="form-group comment">
-                                <textarea class="form-control" name="comment" id="id_comment" placeholder="Comment"></textarea>
+                                <textarea class="form-control" name="comment" id="id_comment"
+                                    placeholder="Comment"></textarea>
                             </div>
                             <button type="submit" class="btn btn-submit red">Submit</button>
                         </form>
@@ -275,7 +280,7 @@
 
 <script>
 
-    $('.reply_ic').click(function(){
+    $('.reply_ic').click(function () {
         console.log($(this).parent().parent().parent().find('.toggle-rp').fadeToggle());
         $(this).find('.toggle-rp').fadeToggle();
     });
@@ -284,7 +289,7 @@
 
 <style>
     .btn.btn-xs.reply_ic {
-    padding: 0px 8px;
-}
+        padding: 0px 8px;
+    }
 </style>
 {% endblock %}

@@ -1,6 +1,5 @@
 {% extends 'site/base.html' %}
 {% load static %}
-
 {% block content %}
 
 <section id="feature_news_section" class="feature_news_section">
@@ -9,8 +8,8 @@
             <div class="col-md-7">
                 <div class="feature_article_wrapper">
                     <div class="feature_article_img">
-                        <img class="img-responsive top_static_article_img" src="{% static 'assets/img/feature-top.jpg' %}"
-                            alt="feature-top">
+                        <img class="img-responsive top_static_article_img"
+                            src="{% static 'assets/img/feature-top.jpg' %}" alt="feature-top">
                     </div>
                     <!-- feature_article_img -->
 
@@ -49,7 +48,8 @@
             <div class="col-md-5">
                 <div class="feature_static_wrapper">
                     <div class="feature_article_img">
-                        <img class="img-responsive" src="{% static 'assets/img/feature-static1.jpg' %}" alt="feature-top">
+                        <img class="img-responsive" src="{% static 'assets/img/feature-static1.jpg' %}"
+                            alt="feature-top">
                     </div>
                     <!-- feature_article_img -->
 
@@ -89,7 +89,8 @@
             <div class="col-md-5">
                 <div class="feature_static_last_wrapper">
                     <div class="feature_article_img">
-                        <img class="img-responsive" src="{% static 'assets/img/feature-static2.jpg' %}" alt="feature-top">
+                        <img class="img-responsive" src="{% static 'assets/img/feature-static2.jpg' %}"
+                            alt="feature-top">
                     </div>
                     <!-- feature_article_img -->
 
@@ -144,142 +145,98 @@
                         <h2><a href="category.html" target="_self">Mobile</a></h2>
                     </div>
                     <!----article_title------>
-                    <div class="category_article_wrapper">
-                        <div class="row">
+
+                    {% for post_catalog_one in post_catalog_oned %}
+                        {% if forloop.first %}
+                        <div class="category_article_wrapper">
+                            <div class="row">
                             <div class="col-md-6">
                                 <div class="top_article_img">
-                                    <a href="single.html" target="_self"><img class="img-responsive"
-                                            src="{% static 'assets/img/cat-mobi-left-1.jpg' %}" alt="feature-top">
+                                    <a href="{{ post_catalog_one.get_absolute_url }}" target="_self"><img class="img-responsive"
+                                            src="{{ post_catalog_one.thumbnail.url }}" alt="feature-top">
                                     </a>
                                 </div>
                                 <!----top_article_img------>
                             </div>
                             <div class="col-md-6">
-                                <span class="tag purple">Mobile</span>
+                                <span class="tag purple">{{ post_catalog_one.category }}</span>
 
                                 <div class="category_article_title">
-                                    <h2><a href="single.html" target="_self">Airbnb launches
-                                            photo-centric app for iPads and Android
-                                            tablets. </a></h2>
+                                    <h2><a href="{{ post_catalog_one.get_absolute_url }}" target="_self">{{ post_catalog_one.title }}. </a></h2>
                                 </div>
                                 <!----category_article_title------>
-                                <div class="category_article_date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
+                                <div class="category_article_date"><a href="#">{{ post_catalog_one.timestamp|date:"j M Y" }}</a>, by: <a href="#">Eric
                                         joan</a></div>
                                 <!----category_article_date------>
                                 <div class="category_article_content">
-                                    Collaboratively administrate empowered markets via plug-and-play
-                                    networks. Dynamically procrastinate
-                                    B2C users after installed base benefits. Dramatically visualize
-                                    customer directed convergence
-                                    without revolutionary ROI.
+                                    {{ post_catalog_one.description|truncatechars:100 }}.
                                 </div>
                                 <!----category_article_content------>
                                 <div class="media_social">
                                     <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
                                         Shares</span>
-                                    <span><i class="fa fa-comments-o"></i><a href="#">4</a>
+                                    <span><i class="fa fa-comments-o"></i><a href="#">{{ post_catalog_one.get_comment_count }}</a>
                                         Comments</span>
                                 </div>
                                 <!----media_social------>
                             </div>
                         </div>
                     </div>
-                    <div class="category_article_wrapper">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="{% static 'assets/img/cat-mobi-sm1.jpg' %}"
-                                                alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="tag purple">Mobile</span>
+                        {% elif forloop.counter0 == 1  %}
+                        <div class="category_article_wrapper">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="{{ post_catalog_one.get_absolute_url }}"><img class="media-object" style="width: 122px; height: 122px;"
+                                                    src="{{ post_catalog_one.thumbnail.url }}"
+                                                    alt="Generic placeholder image"></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <!-- <span class="tag purple">{{ post_catalog_one.category }}</span> -->
 
-                                        <h3 class="media-heading"><a href="single.html" target="_self">Apple launches
-                                                photo-centric
-                                                wrist watch for Android</a></h3>
-                                        <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
-                                                joan</a></span>
+                                            <h3 class="media-heading"><a href="single.html" target="_self">{{ post_catalog_one.title }}</a></h3>
+                                            <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
+                                                    joan</a></span>
 
-                                        <div class="media_social">
-                                            <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
-                                                Shares</span>
-                                            <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
-                                                Comments</span>
+                                            <div class="media_social">
+                                                <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
+                                                    Shares</span>
+                                                <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
+                                                    Comments</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="{% static 'assets/img/cat-mobi-sm3.jpg' %}"
-                                                alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="tag purple">Mobile</span>
-
-                                        <h3 class="media-heading"><a href="single.html" target="_self">The Portable
-                                                Charger or data
-                                                cable</a></h3>
-                                        <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
-                                                joan</a></span>
-
-                                        <div class="media_social">
-                                            <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
-                                                Shares</span>
-                                            <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
-                                                Comments</span>
+                                {% elif forloop.counter0 == 2  %}
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="{{ post_catalog_one.get_absolute_url }}"><img class="media-object"  style="width: 122px; height: 122px;"
+                                                    src="{{ post_catalog_one.thumbnail.url }}"
+                                                    alt="Generic placeholder image"></a>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="{% static 'assets/img/cat-mobi-sm2.jpg' %}"
-                                                alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="tag purple">Mobile</span>
+                                        <div class="media-body">
+                                            <!-- <span class="tag purple">{{ post_catalog_one.category }}</span> -->
 
-                                        <h3 class="media-heading"><a href="single.html" target="_self">Iphone 6 launches
-                                                white & Grey
-                                                colors handset</a></h3>
-                                        <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
-                                                joan</a></span>
+                                            <h3 class="media-heading"><a href="{{ post_catalog_one.get_absolute_url }}" target="_self">{{ post_catalog_one.title }}</a></h3>
+                                            <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
+                                                    joan</a></span>
 
-                                        <div class="media_social">
-                                            <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
-                                                Shares</span>
-                                            <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
-                                                Comments</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="{% static 'assets/img/cat-mobi-sm4.jpg' %}"
-                                                alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="tag purple">Mobile</span>
-
-                                        <h3 class="media-heading"><a href="single.html" target="_self">Fully new look
-                                                slim handset
-                                                like</a></h3>
-                                        <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
-                                                joan</a></span>
-
-                                        <div class="media_social">
-                                            <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
-                                                Shares</span>
-                                            <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
-                                                Comments</span>
+                                            <div class="media_social">
+                                                <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
+                                                    Shares</span>
+                                                <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
+                                                    Comments</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        {% endif %}
+                        {% endfor %}
+
                     <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
                 </div>
                 <!-- Mobile News Section -->
@@ -296,20 +253,23 @@
                             <div class="col-md-6">
                                 <div class="category_article_body">
                                     <div class="top_article_img">
-                                        <a href="single.html" target="_self"><img class="img-responsive"
+                                        <a href="single.html" target="_self"><img class="img-responsive" style="width: 360px; height: 267px;"
                                                 src="{{ post_catalog_two.thumbnail.url }}" alt="feature-top">
                                         </a>
                                     </div>
                                     <!-- top_article_img -->
 
-                                    <span class="tag pink"><a href="category.html" target="_self">{{ post_catalog_two.category }}</a></span>
+                                    <span class="tag pink"><a href="category.html"
+                                            target="_self">{{ post_catalog_two.category }}</a></span>
 
                                     <div class="category_article_title">
-                                        <h2><a href="single.html" target="_self">{{ post_catalog_two.title }} </a></h2>
+                                        <h2><a href="{{ post_catalog_two.get_absolute_url }}" target="_self">{{ post_catalog_two.title }} </a></h2>
                                     </div>
                                     <!-- category_article_title -->
 
-                                    <div class="article_date"><a href="#">{{ post_catalog_two.timestamp|date:"j M Y" }}</a>, by: <a href="#">Eric joan</a>
+                                    <div class="article_date"><a
+                                            href="#">{{ post_catalog_two.timestamp|date:"j M Y" }}</a>, by: <a
+                                            href="#">Eric joan</a>
                                     </div>
                                     <!----article_date------>
                                     <!-- article_date -->
@@ -322,7 +282,8 @@
                                     <div class="media_social">
                                         <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
                                             Shares</span>
-                                        <span><i class="fa fa-comments-o"></i><a href="#">{{ post_catalog_two.get_comment_count }}</a>
+                                        <span><i class="fa fa-comments-o"></i><a
+                                                href="#">{{ post_catalog_two.get_comment_count }}</a>
                                             Comments</span>
                                     </div>
                                     <!-- media_social -->
@@ -339,7 +300,7 @@
                     </div>
                     <!-- category_article_wrapper -->
 
-                    <p class="divider"><a href="#">Sany&nbsp;&raquo;</a></p>
+                    <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
                 </div>
                 <!-- Tablet News Section -->
 
@@ -353,7 +314,8 @@
                                 <div class="category_article_body">
                                     <div class="top_article_img">
                                         <a href="single.html" target="_self">
-                                            <img class="img-responsive" src="{% static 'assets/img/gad_top1.jpg' %}" alt="feature-top">
+                                            <img class="img-responsive" src="{% static 'assets/img/gad_top1.jpg' %}"
+                                                alt="feature-top">
                                         </a>
                                     </div>
                                     <!-- top_article_img -->
@@ -391,7 +353,8 @@
                                 <div class="category_article_list">
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img class="media-object" src="{% static 'assets/img/cat-mobi-sm1.jpg' %}"
+                                            <a href="#"><img class="media-object"
+                                                    src="{% static 'assets/img/cat-mobi-sm1.jpg' %}"
                                                     alt="Generic placeholder image"></a>
                                         </div>
                                         <div class="media-body">
@@ -411,7 +374,8 @@
                                     </div>
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img class="media-object" src="{% static 'assets/img/cat-mobi-sm3.jpg' %}"
+                                            <a href="#"><img class="media-object"
+                                                    src="{% static 'assets/img/cat-mobi-sm3.jpg' %}"
                                                     alt="Generic placeholder image"></a>
                                         </div>
                                         <div class="media-body">
@@ -438,7 +402,8 @@
                             <div class="col-md-6">
                                 <div class="category_article_body">
                                     <div class="top_article_img">
-                                        <img class="img-responsive" src="{% static 'assets/img/gad_top2.jpg' %}" alt="feature-top">
+                                        <img class="img-responsive" src="{% static 'assets/img/gad_top2.jpg' %}"
+                                            alt="feature-top">
                                     </div>
                                     <!-- top_article_img -->
 
@@ -488,43 +453,41 @@
                         <h2><a href="category.html" target="_self">Camera</a></h2>
                     </div>
                     <!-- article_title -->
-
+                    {% for post_catalog_four in post_catalog_four %}
                     <div class="category_article_wrapper">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="top_article_img">
                                     <a href="single.html" target="_self">
-                                        <img class="img-responsive" src="{% static 'assets/img/cam_left1.jpg' %}" alt="feature-top">
+                                        <img class="img-responsive" src="{{ post_catalog_four.thumbnail.url }}"
+                                            alt="feature-top">
                                     </a>
                                 </div>
                                 <!-- top_article_img -->
 
                             </div>
                             <div class="col-md-7">
-                                <span class="tag orange">Camera</span>
+                                <span class="tag orange">{{ post_catalog_four.category }} </span>
 
                                 <div class="category_article_title">
-                                    <h2><a href="single.html" target="_self">Yasaki camera launches new
-                                            generic hi-speed </a></h2>
+                                    <h2><a href="{{ post_catalog_four.get_absolute_url }}" target="_self">{{ post_catalog_four.title }} </a></h2>
                                 </div>
                                 <!-- category_article_title -->
 
-                                <div class="article_date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
+                                <div class="article_date"><a href="#">{{ post_catalog_four.timestamp|date:"j M Y" }}</a>, by: <a href="#">Eric joan</a>
                                 </div>
                                 <!----article_date------>
                                 <!-- category_article_wrapper -->
 
                                 <div class="category_article_content">
-                                    Collaboratively administrate empowered markets via plug-and-play
-                                    networks. Dynamically
-                                    procrastinate.
+                                    {{ post_catalog_four.description|truncatechars:100 }}.
                                 </div>
                                 <!-- category_article_content -->
 
                                 <div class="media_social">
                                     <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
                                         Shares</span>
-                                    <span><i class="fa fa-comments-o"></i><a href="#">4</a>
+                                    <span><i class="fa fa-comments-o"></i><a href="#">{{ post_catalog_four.get_comment_count }}</a>
                                         Comments</span>
                                 </div>
                                 <!-- media_social -->
@@ -536,108 +499,8 @@
                         <!-- row -->
 
                     </div>
+                    {% endfor %}
                     <!-- category_article_wrapper -->
-
-                    <div class="category_article_wrapper">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="top_article_img">
-                                    <a href="single.html" target="_self">
-                                        <img class="img-responsive" src="{% static 'assets/img/cam_left2.jpg' %}" alt="feature-top">
-                                    </a>
-                                </div>
-                                <!-- top_article_img -->
-
-                            </div>
-                            <div class="col-md-7">
-                                <span class="tag orange">Camera</span>
-
-                                <div class="category_article_title">
-                                    <h2><a href="single.html" target="_self">DSLR is the most old camera
-                                            at this time </a></h2>
-                                </div>
-                                <!-- category_article_title -->
-
-                                <div class="article_date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                                </div>
-                                <!----article_date------>
-                                <!-- article_date -->
-
-                                <div class="category_article_content">
-                                    Collaboratively administrate empowered markets via plug-and-play
-                                    networks. Dynamically
-                                    procrastinate.
-                                </div>
-                                <!-- category_article_content -->
-
-                                <div class="media_social">
-                                    <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
-                                        Shares</span>
-                                    <span><i class="fa fa-comments-o"></i><a href="#">4</a>
-                                        Comments</span>
-                                </div>
-                                <!-- media_social -->
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- category_article_wrapper -->
-
-                    <div class="category_article_wrapper">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="top_article_img">
-                                    <a href="single.html" target="_self">
-                                        <img class="img-responsive" src="{% static 'assets/img/cam_left3.jpg' %}" alt="feature-top">
-                                    </a>
-                                </div>
-                                <!-- media_social -->
-
-                            </div>
-                            <div class="col-md-7">
-                                <span class="tag orange"><a href="single.html" target="_self">Camera</a></span>
-
-                                <div class="category_article_title">
-                                    <h2><a href="single.html" target="_self">Canon Camera launches photo
-                                            centric Android</a></h2>
-                                </div>
-                                <!-- category_article_title -->
-
-                                <div class="article_date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                                </div>
-                                <!----article_date------>
-                                <!-- article_date -->
-
-                                <div class="category_article_content">
-                                    Collaboratively administrate empowered markets via plug-and-play
-                                    networks. Dynamically
-                                    procrastinate.
-                                </div>
-                                <!-- category_article_content -->
-
-                                <div class="media_social">
-                                    <span>
-                                        <a href="#">
-                                            <i class="fa fa-share-alt"></i>424
-                                        </a> Shares
-                                    </span>
-                                    <span>
-                                        <a href="#">
-                                            <i class="fa fa-comments-o"></i>4
-                                        </a> Comments
-                                    </span>
-                                </div>
-                                <!-- media_social -->
-
-                            </div>
-                            <!-- col-md-7 -->
-
-                        </div>
-                        <!-- row -->
-
-                    </div>
-                    <!-- category_article_wrapper -->
-
                     <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
                 </div>
                 <!-- Camera News Section -->
@@ -790,7 +653,8 @@
                             <div class="col-md-6">
                                 <div class="category_article_body">
                                     <div class="top_article_img">
-                                        <img class="img-responsive" src="{% static 'assets/img/design_top4.jpg' %}" alt="feature-top">
+                                        <img class="img-responsive" src="{% static 'assets/img/design_top4.jpg' %}"
+                                            alt="feature-top">
                                     </div>
                                     <!-- top_article_img -->
 
