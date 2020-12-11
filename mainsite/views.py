@@ -37,6 +37,7 @@ class HomeView(TemplateView):
         context['post_catalog_four'] = results[4]
         context['post_catalog_five'] = results[5]
 
+        print(context['post_catalog_three'])
         return context
 
 

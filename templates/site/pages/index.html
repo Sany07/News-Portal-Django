@@ -140,170 +140,129 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div class="category_section mobile">
-
-                    <!----article_title------>
-
-                    {% for post_catalog_one in post_catalog_oned %}
-                        {% if forloop.first %}
-                        <div class="article_title header_purple">
-                            <h2><a href="{{ post_catalog_one.thumbnail.url }}" target="_self">{{ post_catalog_one.category }}</a></h2>
-                        </div>
-                        <div class="category_article_wrapper">
-                            <div class="row">
-                            <div class="col-md-6">
+                <div class="category_section camera">
+ 
+                    <!-- article_title -->
+                    {% for post_catalog_one in post_catalog_one %}
+                    {% if forloop.first %}
+                    <div class="article_title header_orange">
+                        <h2><a href="{{ post_catalog_one.category.get_absolute_url }}" target="_self">{{ post_catalog_one.category }}</a></h2>
+                    </div>
+                    {% endif %}
+                    <div class="category_article_wrapper">
+                        <div class="row">
+                            <div class="col-md-5">
                                 <div class="top_article_img">
-                                    <a href="{{ post_catalog_one.get_absolute_url }}" target="_self"><img class="img-responsive"
-                                            src="{{ post_catalog_one.thumbnail.url }}" alt="feature-top">
+                                    <a href="single.html" target="_self">
+                                        <img class="img-responsive" style="width: 295px; height: 199px;" src="{{ post_catalog_one.thumbnail.url }}"
+                                            alt="feature-top">
                                     </a>
                                 </div>
-                                <!----top_article_img------>
+                                <!-- top_article_img -->
+
                             </div>
-                            <div class="col-md-6">
-                                <span class="tag purple">{{ post_catalog_one.category }}</span>
+                            <div class="col-md-7">
+                                <span class="tag orange">{{ post_catalog_one.category }} </span>
 
                                 <div class="category_article_title">
-                                    <h2><a href="{{ post_catalog_one.get_absolute_url }}" target="_self">{{ post_catalog_one.title }}. </a></h2>
+                                    <h2><a href="{{ post_catalog_one.get_absolute_url }}" target="_self">{{ post_catalog_one.title }} </a></h2>
                                 </div>
-                                <!----category_article_title------>
-                                <div class="category_article_date"><a href="#">{{ post_catalog_one.timestamp|date:"j M Y" }}</a>, by: <a href="#">Eric
-                                        joan</a></div>
-                                <!----category_article_date------>
+                                <!-- category_article_title -->
+
+                                <div class="article_date"><a href="#">{{ post_catalog_one.timestamp|date:"j M Y" }}</a>, by: <a href="#">Eric joan</a>
+                                </div>
+                                <!----article_date------>
+                                <!-- category_article_wrapper -->
+
                                 <div class="category_article_content">
                                     {{ post_catalog_one.description|truncatechars:100 }}.
                                 </div>
-                                <!----category_article_content------>
+                                <!-- category_article_content -->
+
                                 <div class="media_social">
                                     <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
                                         Shares</span>
                                     <span><i class="fa fa-comments-o"></i><a href="#">{{ post_catalog_one.get_comment_count }}</a>
                                         Comments</span>
                                 </div>
-                                <!----media_social------>
+                                <!-- media_social -->
+
                             </div>
+                            <!-- col-md-7 -->
+
                         </div>
+                        <!-- row -->
+
                     </div>
-                        {% elif forloop.counter0 == 1  %}
-                        <div class="category_article_wrapper">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="{{ post_catalog_one.get_absolute_url }}"><img class="media-object" style="width: 122px; height: 122px;"
-                                                    src="{{ post_catalog_one.thumbnail.url }}"
-                                                    alt="Generic placeholder image"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <!-- <span class="tag purple">{{ post_catalog_one.category }}</span> -->
-
-                                            <h3 class="media-heading"><a href="single.html" target="_self">{{ post_catalog_one.title }}</a></h3>
-                                            <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
-                                                    joan</a></span>
-
-                                            <div class="media_social">
-                                                <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
-                                                    Shares</span>
-                                                <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
-                                                    Comments</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% elif forloop.counter0 == 2  %}
-                                <div class="col-md-6">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="{{ post_catalog_one.get_absolute_url }}"><img class="media-object"  style="width: 122px; height: 122px;"
-                                                    src="{{ post_catalog_one.thumbnail.url }}"
-                                                    alt="Generic placeholder image"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <!-- <span class="tag purple">{{ post_catalog_one.category }}</span> -->
-
-                                            <h3 class="media-heading"><a href="{{ post_catalog_one.get_absolute_url }}" target="_self">{{ post_catalog_one.title }}</a></h3>
-                                            <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
-                                                    joan</a></span>
-
-                                            <div class="media_social">
-                                                <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
-                                                    Shares</span>
-                                                <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
-                                                    Comments</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-
+                    {% endfor %}
+                    <!-- category_article_wrapper -->
                     <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
                 </div>
                 <!-- Mobile News Section -->
 
                 <div class="category_section tablet">
                     <!-- Mobile News Section -->
-
+                    <div class="row">
                     <div class="category_article_wrapper">
-                        <div class="row">
-                            {% for post_catalog_two in post_catalog_two %}
-                            {% if forloop.first %}
-                            <div class="article_title header_pink" style="margin-left:15px;margin-right:15px">
-                                <h2><a href="{{ post_catalog_two.category.get_absolute_url }}" target="_self">{{ post_catalog_two.category }}</a></h2>
-                            </div>
-                            {% endif %}
-                            <div class="col-md-6">
-                                <div class="category_article_body">
-                                    <div class="top_article_img">
-                                        <a href="single.html" target="_self"><img class="img-responsive" style="width: 360px; height: 267px;"
-                                                src="{{ post_catalog_two.thumbnail.url }}" alt="feature-top">
-                                        </a>
-                                    </div>
-                                    <!-- top_article_img -->
-
-                                    <span class="tag pink"><a href="category.html"
-                                            target="_self">{{ post_catalog_two.category }}</a></span>
-
-                                    <div class="category_article_title">
-                                        <h2><a href="{{ post_catalog_two.get_absolute_url }}" target="_self">{{ post_catalog_two.title }} </a></h2>
-                                    </div>
-                                    <!-- category_article_title -->
-
-                                    <div class="article_date"><a
-                                            href="#">{{ post_catalog_two.timestamp|date:"j M Y" }}</a>, by: <a
-                                            href="#">Eric joan</a>
-                                    </div>
-                                    <!----article_date------>
-                                    <!-- article_date -->
-
-                                    <div class="category_article_content">
-                                        {{ post_catalog_two.description|truncatechars:100 }}.
-                                    </div>
-                                    <!-- category_article_content -->
-
-                                    <div class="media_social">
-                                        <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
-                                            Shares</span>
-                                        <span><i class="fa fa-comments-o"></i><a
-                                                href="#">{{ post_catalog_two.get_comment_count }}</a>
-                                            Comments</span>
-                                    </div>
-                                    <!-- media_social -->
-
+                        {% for post_catalog_two in post_catalog_two %}
+                        {% if forloop.first %}
+                        <div class="article_title header_pink" style="margin-left:15px;margin-right:15px">
+                            <h2><a href="{{ post_catalog_two.category.get_absolute_url }}" target="_self">{{ post_catalog_two.category }}</a></h2>
+                        </div>
+                        {% endif %}
+                        <div class="col-md-6">
+                            <div class="category_article_body">
+                                <div class="top_article_img">
+                                    <a href="single.html" target="_self"><img class="img-responsive" style="width: 360px; height: 267px;"
+                                            src="{{ post_catalog_two.thumbnail.url }}" alt="feature-top">
+                                    </a>
                                 </div>
-                                <!-- category_article_body -->
+                                <!-- top_article_img -->
+
+                                <span class="tag pink"><a href="category.html"
+                                        target="_self">{{ post_catalog_two.category }}</a></span>
+
+                                <div class="category_article_title">
+                                    <h2><a href="{{ post_catalog_two.get_absolute_url }}" target="_self">{{ post_catalog_two.title }} </a></h2>
+                                </div>
+                                <!-- category_article_title -->
+
+                                <div class="article_date"><a
+                                        href="#">{{ post_catalog_two.timestamp|date:"j M Y" }}</a>, by: <a
+                                        href="#">Eric joan</a>
+                                </div>
+                                <!----article_date------>
+                                <!-- article_date -->
+
+                                <div class="category_article_content">
+                                    {{ post_catalog_two.description|truncatechars:100 }}.
+                                </div>
+                                <!-- category_article_content -->
+
+                                <div class="media_social">
+                                    <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
+                                        Shares</span>
+                                    <span><i class="fa fa-comments-o"></i><a
+                                            href="#">{{ post_catalog_two.get_comment_count }}</a>
+                                        Comments</span>
+                                </div>
+                                <!-- media_social -->
 
                             </div>
-                            <!-- col-md-6 -->
-                            {% endfor %}
+                            <!-- category_article_body -->
+
+                        </div>
+                        <!-- col-md-6 -->
+                        {% if forloop.last %}
+                        <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
+                        {% endif %}
+                        {% endfor %}
                         </div>
                         <!-- row -->
-
                     </div>
                     <!-- category_article_wrapper -->
 
-                    <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
+                    
                 </div>
                 <!-- Tablet News Section -->
 
@@ -507,7 +466,7 @@
                     </div>
                     {% endfor %}
                     <!-- category_article_wrapper -->
-                    <p class="divider"><a href="#">sdsMore News&nbsp;&raquo;</a></p>
+                    <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
                 </div>
                 <!-- Camera News Section -->
 
