@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import get_user_model
 User = get_user_model()
+
 from comment.form import CommentModelForm
 
 
