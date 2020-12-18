@@ -141,13 +141,13 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="category_section camera">
-
                     <!-- article_title -->
-                    {% for post_catalog_one in post_catalog_one %}
+                    {% for post_catalog_one in post_catalog_list_one %}
                     {% if forloop.first %}
                     <div class="article_title header_orange">
-                        <h2><a href="{{ post_catalog_one.category.get_absolute_url }}" target="_self">{{
-                                post_catalog_one.category }}</a></h2>
+                        <h2><a href="{{ post_catalog_one.category.get_absolute_url }}" target="_self">
+                                {{ post_catalog_one.category }}</a>
+                        </h2>
                     </div>
                     {% endif %}
                     <div class="category_article_wrapper">
@@ -160,14 +160,16 @@
                                     </a>
                                 </div>
                                 <!-- top_article_img -->
-
                             </div>
                             <div class="col-md-7">
-                                <span class="tag orange">{{ post_catalog_one.category }} </span>
+                                <span class="tag orange">
+                                    {{ post_catalog_one.category }}
+                                </span>
 
                                 <div class="category_article_title">
-                                    <h2><a href="{{ post_catalog_one.get_absolute_url }}" target="_self">{{
-                                        post_catalog_one.title }} </a></h2>
+                                    <h2><a href="{{ post_catalog_one.get_absolute_url }}" target="_self">
+                                            {{ post_catalog_one.title }}
+                                        </a></h2>
                                 </div>
                                 <!-- category_article_title -->
 
@@ -176,27 +178,22 @@
                                 </div>
                                 <!----article_date------>
                                 <!-- category_article_wrapper -->
-
                                 <div class="category_article_content">
                                     {{ post_catalog_one.description|truncatechars:100 }}.
                                 </div>
                                 <!-- category_article_content -->
-
                                 <div class="media_social">
                                     <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
                                         Shares</span>
-                                    <span><i class="fa fa-comments-o"></i><a href="#">{{
-                                            post_catalog_one.get_comment_count }}</a>
+                                    <span><i class="fa fa-comments-o"></i><a href="#">
+                                            {{ post_catalog_one.get_comment_count }}</a>
                                         Comments</span>
                                 </div>
                                 <!-- media_social -->
-
                             </div>
                             <!-- col-md-7 -->
-
                         </div>
                         <!-- row -->
-
                     </div>
                     {% endfor %}
                     <!-- category_article_wrapper -->
@@ -211,8 +208,8 @@
                             {% for post_catalog_two in post_catalog_two %}
                             {% if forloop.first %}
                             <div class="article_title header_pink" style="margin-left:15px;margin-right:15px">
-                                <h2><a href="{{ post_catalog_two.category.get_absolute_url }}" target="_self">{{
-                                        post_catalog_two.category }}</a></h2>
+                                <h2><a href="{{ post_catalog_two.category.get_absolute_url }}" target="_self">
+                                    {{ post_catalog_two.category }}</a></h2>
                             </div>
                             {% endif %}
                             <div class="col-md-6">
@@ -225,12 +222,12 @@
                                     </div>
                                     <!-- top_article_img -->
 
-                                    <span class="tag pink"><a href="category.html" target="_self">{{
-                                            post_catalog_two.category }}</a></span>
+                                    <span class="tag pink"><a href="category.html" target="_self">
+                                        {{ post_catalog_two.category }}</a></span>
 
                                     <div class="category_article_title">
-                                        <h2><a href="{{ post_catalog_two.get_absolute_url }}" target="_self">{{
-                                                post_catalog_two.title }} </a></h2>
+                                        <h2><a href="{{ post_catalog_two.get_absolute_url }}" target="_self">
+                                            {{ post_catalog_two.title }} </a></h2>
                                     </div>
                                     <!-- category_article_title -->
 
@@ -248,8 +245,8 @@
                                     <div class="media_social">
                                         <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
                                             Shares</span>
-                                        <span><i class="fa fa-comments-o"></i><a href="#">{{
-                                                post_catalog_two.get_comment_count }}</a>
+                                        <span><i class="fa fa-comments-o"></i><a href="#">
+                                            {{ post_catalog_two.get_comment_count }}</a>
                                             Comments</span>
                                     </div>
                                     <!-- media_social -->
@@ -422,8 +419,8 @@
                     {% for post_catalog_four in post_catalog_four %}
                     {% if forloop.first %}
                     <div class="article_title header_orange">
-                        <h2><a href="{{ post_catalog_four.category.get_absolute_url }}" target="_self">{{
-                                post_catalog_four.category }}</a></h2>
+                        <h2><a href="{{ post_catalog_four.category.get_absolute_url }}" target="_self">
+                            {{ post_catalog_four.category }}</a></h2>
                     </div>
                     {% endif %}
                     <div class="category_article_wrapper">
@@ -442,13 +439,14 @@
                                 <span class="tag orange">{{ post_catalog_four.category }} </span>
 
                                 <div class="category_article_title">
-                                    <h2><a href="{{ post_catalog_four.get_absolute_url }}" target="_self">{{
-                                            post_catalog_four.title }} </a></h2>
+                                    <h2><a href="{{ post_catalog_four.get_absolute_url }}" target="_self">
+                                        {{ post_catalog_four.title }} </a></h2>
                                 </div>
                                 <!-- category_article_title -->
 
-                                <div class="article_date"><a href="#">{{ post_catalog_four.timestamp|date:"j M Y"
-                                        }}</a>, by: <a href="#">Eric joan</a>
+                                <div class="article_date"><a href="#">
+                                    {{ post_catalog_four.timestamp|date:"j M Y" }}
+                                        </a>, by: <a href="#">Eric joan</a>
                                 </div>
                                 <!----article_date------>
                                 <!-- category_article_wrapper -->
@@ -461,8 +459,8 @@
                                 <div class="media_social">
                                     <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
                                         Shares</span>
-                                    <span><i class="fa fa-comments-o"></i><a href="#">{{
-                                            post_catalog_four.get_comment_count }}</a>
+                                    <span><i class="fa fa-comments-o"></i><a href="#">
+                                        {{ post_catalog_four.get_comment_count }}</a>
                                         Comments</span>
                                 </div>
                                 <!-- media_social -->

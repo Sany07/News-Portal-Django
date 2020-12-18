@@ -29,13 +29,15 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         results = self.get_home_page_post_list()
         context['hot_news'] = results[0]
-        context['post_catalog_one'] = results[1]
+        context['post_catalog_list_one'] = results[1]
         context['post_catalog_two'] = results[2]
         context['post_catalog_three'] = results[3]
         context['post_catalog_four'] = results[4]
         context['post_catalog_five'] = results[5]
 
-        print(context['post_catalog_one'])
+        # print(context['post_catalog_list_one'])
+        for p in context['post_catalog_list_one']:
+            print(p.title)
         return context
 
 
