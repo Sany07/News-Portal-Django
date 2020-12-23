@@ -49,12 +49,10 @@ class News(models.Model):
     def get_absolute_url(self):
         return reverse("newspaper:single-post", kwargs={'slug': self.slug})
     
-    @property
+    # @property
     def get_comment_count(self):
         # comment_count = News.objects.all().annotate(Count('post__id')).order_by('-post__id__count') 
         comment_count= self.post.values('post__id').aggregate(models.Count('post__id'))
-        print(comment_count)
-        print(comment_count['post__id__count'])
         return comment_count['post__id__count']
 
 
