@@ -5,12 +5,12 @@
 <section id="feature_news_section" class="feature_news_section">
     <div class="container">
         <div class="row">
-            {% include 'site/pages/hot_news_index.html' %}
+            {% include 'site/includes/_hot_news_index.html' %}
             <!-- col-md-7 -->
 
 
             <!-- col-md-5 -->
-
+            {% include 'site/includes/_top_page_index.html' %}
         </div>
         <!-- Row -->
 
@@ -62,7 +62,7 @@
                                 <!-- category_article_title -->
 
                                 <div class="article_date"><a href="#">{{ post_catalog_one.timestamp|date:"j M Y" }}</a>,
-                                    by: <a href="#">Eric joan</a>
+                                    by: <a href="#"> {{ post_catalog_one.author|title }}</a>
                                 </div>
                                 <!----article_date------>
                                 <!-- category_article_wrapper -->
@@ -129,7 +129,7 @@
 
                                     <div class="category_article_date"><a href="#">
                                         {{ post_catalog_two.timestamp|date:"j M Y" }}</a>, by:
-                                        <a href="#">Eric joan</a>
+                                        <a href="#">{{ post_catalog_two.author|title }}</a>
                                     </div>
                                     <!----category_article_date------>
                                     <!-- category_article_date -->
@@ -199,7 +199,7 @@
     
                                         <div class="category_article_date"><a href="#">
                                             {{ post_catalog_three.timestamp|date:"j M Y" }}</a>, by:
-                                            <a href="#">Eric joan</a>
+                                            <a href="#">{{ post_catalog_three.author|title }}</a>
                                         </div>
                                         <!----category_article_date------>
                                         <!-- category_article_date -->
@@ -270,7 +270,7 @@
                                 <!-- category_article_title -->
                                 <div class="article_date"><a href="#">
                                         {{ post_catalog_four.timestamp|date:"j M Y" }}
-                                    </a>, by: <a href="#">Eric joan</a>
+                                    </a>, by: <a href="#">{{ post_catalog_four.author|title }}</a>
                                 </div>
                                 <!----article_date------>
                                 <!-- category_article_wrapper -->
@@ -335,7 +335,7 @@
 
                                     <div class="category_article_date"><a href="#">
                                         {{ post_catalog_five.timestamp|date:"j M Y" }}</a>, by:
-                                        <a href="#">Eric joan</a>
+                                        <a href="#">{{ post_catalog_five.author|title }}</a>
                                     </div>
                                     <!----category_article_date------>
                                     <!-- category_article_date -->

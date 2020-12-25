@@ -7,6 +7,19 @@ User = settings.AUTH_USER_MODEL
 
 from taggit.managers import TaggableManager
 
+
+class Author(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_pic = models.ImageField(upload_to='profile_pic/%Y-%m-%d/', blank=True,null=True)
+
+    class Meta:
+        verbose_name = "Author"
+        verbose_name_plural = "Authors"
+        db_table = "authors"
+
+    def __str__(self):
+        return self.user.username
+
 class Category(models.Model):
     name = models.CharField(max_length=20)
     slug = models.SlugField(unique=True,null=True, blank=True, max_length=255)
@@ -27,6 +40,7 @@ class Category(models.Model):
 
 
 class News(models.Model):
+    author = models.ForeignKey(Author,on_delete=models.CASCADE,related_name='author')
     title = models.CharField(max_length=250,blank=False)
     slug = models.SlugField(unique=True,null=True, blank=True, max_length=255)
     description = models.TextField()
