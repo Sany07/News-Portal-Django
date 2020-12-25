@@ -5,126 +5,10 @@
 <section id="feature_news_section" class="feature_news_section">
     <div class="container">
         <div class="row">
-            <div class="col-md-7">
-                <div class="feature_article_wrapper">
-                    <div class="feature_article_img">
-                        <img class="img-responsive top_static_article_img"
-                            src="{% static 'assets/img/feature-top.jpg' %}" alt="feature-top">
-                    </div>
-                    <!-- feature_article_img -->
-
-                    <div class="feature_article_inner">
-                        <div class="tag_lg red"><a href="category.html">Hot News</a></div>
-                        <div class="feature_article_title">
-                            <h1><a href="{{ hot_news.get_absolute_url }}" target="_self">{{ hot_news.title }}</a></h1>
-                        </div>
-                        <!-- feature_article_title -->
-
-                        <div class="feature_article_date"><a href="#" target="_self">Stive Clark</a>,<a href="#"
-                                target="_self">Aug
-                                4, 2015</a></div>
-                        <!-- feature_article_date -->
-
-                        <div class="feature_article_content">
-                            {{ hot_news.get_comment_count.post__id__count }}.
-                        </div>
-                        <!-- feature_article_content -->
-
-                        <div class="article_social">
-                            <span><i class="fa fa-share-alt"></i><a href="#">424</a>Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- feature_article_inner -->
-
-                </div>
-                <!-- feature_article_wrapper -->
-
-            </div>
+            {% include 'site/pages/hot_news_index.html' %}
             <!-- col-md-7 -->
 
-            <div class="col-md-5">
-                <div class="feature_static_wrapper">
-                    <div class="feature_article_img">
-                        <img class="img-responsive" src="{% static 'assets/img/feature-static1.jpg' %}"
-                            alt="feature-top">
-                    </div>
-                    <!-- feature_article_img -->
 
-                    <div class="feature_article_inner">
-                        <div class="tag_lg purple"><a href="category.html">Top Viewed</a></div>
-                        <div class="feature_article_title">
-                            <h1><a href="single.html" target="_self">Alcatel's $180 Idol 3 4.7 is a </a>
-                            </h1>
-                        </div>
-                        <!-- feature_article_title -->
-
-                        <div class="feature_article_date"><a href="#" target="_self">Stive Clark</a>,<a href="#"
-                                target="_self">Aug
-                                4, 2015</a></div>
-                        <!-- feature_article_date -->
-
-                        <div class="feature_article_content">
-                            In a move to address mounting concerns about security on Android...
-                        </div>
-                        <!-- feature_article_content -->
-
-                        <div class="article_social">
-                            <span><i class="fa fa-share-alt"></i><a href="#">424</a>Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- feature_article_inner -->
-
-                </div>
-                <!-- feature_static_wrapper -->
-
-            </div>
-            <!-- col-md-5 -->
-
-            <div class="col-md-5">
-                <div class="feature_static_last_wrapper">
-                    <div class="feature_article_img">
-                        <img class="img-responsive" src="{% static 'assets/img/feature-static2.jpg' %}"
-                            alt="feature-top">
-                    </div>
-                    <!-- feature_article_img -->
-
-                    <div class="feature_article_inner">
-                        <div class="tag_lg blue"><a href="category.html">Top Viewed</a></div>
-
-                        <div class="feature_article_title">
-                            <h1><a href="single.html" target="_self">Gadget user good news</a></h1>
-                        </div>
-                        <!-- feature_article_title -->
-
-                        <div class="feature_article_date"><a href="#" target="_self">Stive Clark</a>,<a href="#"
-                                target="_self">Aug
-                                4, 2015</a></div>
-                        <!-- feature_article_date -->
-
-                        <div class="feature_article_content">
-                            In a move to address mounting concerns about security on Android...
-                        </div>
-                        <!-- feature_article_content -->
-
-                        <div class="article_social">
-                            <span><i class="fa fa-share-alt"></i><a href="#">424</a>Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- feature_article_inner -->
-
-                </div>
-                <!-- feature_static_wrapper -->
-
-            </div>
             <!-- col-md-5 -->
 
         </div>
@@ -154,7 +38,7 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="top_article_img">
-                                    <a href="single.html" target="_self">
+                                    <a href="{{ post_catalog_one.get_absolute_url }}" target="_self">
                                         <img class="img-responsive" style="width: 295px; height: 199px;"
                                             src="{{ post_catalog_one.thumbnail.url }}" alt="feature-top">
                                     </a>
@@ -163,11 +47,12 @@
                             </div>
                             <div class="col-md-7">
                                 {% for tag in post_catalog_one.tags.all %}
-                                <span class="tag orange">
-                                    <a href="{{ post_catalog_one.category.get_absolute_url }}" target="_self">
-                                        {{ tag }}</a>
+                                    <span class="tag orange" style="margin-left: 1px;">
+                                        <a href="{% url 'newspaper:tag' tag %}" target="_self">
+                                            {{ tag }}
+                                        </a>
+                                    </span>
                                 {% endfor %}
-                                </span>
 
                                 <div class="category_article_title">
                                     <h2><a href="{{ post_catalog_one.get_absolute_url }}" target="_self">
@@ -208,29 +93,33 @@
 
                 <div class="category_section tablet">
                     <!-- Mobile News Section -->
-                        <div class="row">
-                            {% for post_catalog_two in post_catalog_two %}
-                            {% if forloop.first %}
-                            <div class="article_title header_pink">
-                                <h2><a href="{{ post_catalog_two.category.get_absolute_url }}" target="_self">
-                                        {{ post_catalog_two.category }}
-                                    </a></h2>
-                            </div>
-                            {% endif %}
-                            <div class="">
-                            <div class="col-md-6">
+                    {% for post_catalog_two in post_catalog_two %}
+                    {% if forloop.first %}
+                    <div class="article_title header_pink">
+                        <h2><a href="{{ post_catalog_two.category.get_absolute_url }}" target="_self">
+                                {{ post_catalog_two.category }}
+                            </a></h2>
+                    </div>
+                    {% endif %}
+                    <div class="">
+                        <div class="">
+                            <div class="col-md-6" style="margin-bottom: 45px; padding: 0px;">
                                 <div class="category_article_body">
                                     <div class="top_article_img">
-                                        <a href="single.html" target="_self"><img class="img-responsive"
-                                                style="width: 360px; height: 267px;"
+                                        <a href="{{ post_catalog_two.get_absolute_url }}" target="_self">
+                                            <img class="img-responsive" style="width: 360px; height:274px;"
                                                 src="{{ post_catalog_two.thumbnail.url }}" alt="feature-top">
                                         </a>
                                     </div>
                                     <!-- top_article_img -->
 
-                                    <span class="tag pink"><a href="{{ post_catalog_two.category.get_absolute_url }}"
-                                            target="_self">
-                                            {{ post_catalog_two.category }}</a></span>
+                                    {% for tag in post_catalog_two.tags.all %}
+                                        <span class="tag pink" style="margin-right: 1px;">
+                                            <a href="{% url 'newspaper:tag' tag %}" target="_self">
+                                                {{ tag }}
+                                            </a>
+                                        </span>
+                                    {% endfor %}
 
                                     <div class="category_article_title">
                                         <h2><a href="{{ post_catalog_two.get_absolute_url }}" target="_self">
@@ -238,10 +127,12 @@
                                     </div>
                                     <!-- category_article_title -->
 
-                                    <div class="article_date"><a href="#">{{ post_catalog_two.timestamp|date:"j M Y" }}</a>, by: <a href="#">Eric joan</a>
+                                    <div class="category_article_date"><a href="#">
+                                        {{ post_catalog_two.timestamp|date:"j M Y" }}</a>, by:
+                                        <a href="#">Eric joan</a>
                                     </div>
-                                    <!----article_date------>
-                                    <!-- article_date -->
+                                    <!----category_article_date------>
+                                    <!-- category_article_date -->
 
                                     <div class="category_article_content">
                                         {{ post_catalog_two.description|truncatechars:100 }}.
@@ -252,170 +143,94 @@
                                         <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
                                             Shares</span>
                                         <span><i class="fa fa-comments-o"></i><a href="#">
-                                                {{ post_catalog_two.get_comment_count }}</a>
+                                            {{ post_catalog_two.get_comment_count }}</a>
                                             Comments</span>
                                     </div>
                                     <!-- media_social -->
-
                                 </div>
                                 <!-- category_article_body -->
-
                             </div>
                             <!-- col-md-6 -->
-                                </div>
-                                <!-- row -->
-                         
-                            {% if forloop.last %}
-                            <p class="divider"><a href="{{ post_catalog_two.category.get_absolute_url }}">More
-                                    News&nbsp;&raquo;</a></p>
-                            {% endif %}
-                            {% endfor %}
                         </div>
+                        <!-- row -->
+                    </div>
+                    {% if forloop.last %}
+                    <p class="divider"><a href="{{ post_catalog_two.category.get_absolute_url }}">More
+                            News&nbsp;&raquo;</a></p>
+                    {% endif %}
+                    {% endfor %}
                     <!-- category_article_wrapper -->
                 </div>
                 <!-- Tablet News Section -->
 
                 <div class="category_section gadget">
-                    <div class="article_title header_black">
-                        <h2><a href="category.html" target="_self">Gadgets</a></h2>
-                    </div>
                     <div class="category_article_wrapper">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="category_article_body">
-                                    <div class="top_article_img">
-                                        <a href="single.html" target="_self">
-                                            <img class="img-responsive" src="{% static 'assets/img/gad_top1.jpg' %}"
-                                                alt="feature-top">
-                                        </a>
-                                    </div>
-                                    <!-- top_article_img -->
-
-                                    <span class="tag black"><a href="category.html" target="_self">Gadgets</a></span>
-
-                                    <div class="category_article_title">
-                                        <h2><a href="single.html" target="_self">A good news for gadget
-                                                users Ds tech comming soon</a>
-                                        </h2>
-                                    </div>
-                                    <!-- category_article_title -->
-
-                                    <div class="article_date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                                    </div>
-                                    <!----article_date------>
-                                    <div class="category_article_content">
-                                        Collaboratively administrate empowered markets via plug-and-play
-                                        networks. Dynamically
-                                        procrastinate B2C users after.
-                                    </div>
-                                    <!-- category_article_content -->
-
-                                    <div class="media_social">
-                                        <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
-                                            Shares</span>
-                                        <span><i class="fa fa-comments-o"></i><a href="#">4</a>
-                                            Comments</span>
-                                    </div>
-                                    <!-- media_social -->
-
-                                </div>
-                                <!-- category_article_body -->
-
-                                <div class="category_article_list">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object"
-                                                    src="{% static 'assets/img/cat-mobi-sm1.jpg' %}"
-                                                    alt="Generic placeholder image"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="single.html" target="_self">Apple
-                                                    launches photo-centric
-                                                    wrist watch for Android</a></h3>
-                                            <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
-                                                    joan</a></span>
-
-                                            <div class="media_social">
-                                                <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
-                                                    Shares</span>
-                                                <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
-                                                    Comments</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object"
-                                                    src="{% static 'assets/img/cat-mobi-sm3.jpg' %}"
-                                                    alt="Generic placeholder image"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="single.html" target="_self">Apple
-                                                    launches photo-centric
-                                                    wrist watch for Android</a></h3>
-                                            <span class="media-date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric
-                                                    joan</a></span>
-
-                                            <div class="media_social">
-                                                <span><a href="#"><i class="fa fa-share-alt"></i>424</a>
-                                                    Shares</span>
-                                                <span><a href="#"><i class="fa fa-comments-o"></i>4</a>
-                                                    Comments</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- category_article_list -->
-
-                            </div>
-                            <!-- col-md-6 -->
-
-                            <div class="col-md-6">
-                                <div class="category_article_body">
-                                    <div class="top_article_img">
-                                        <img class="img-responsive" src="{% static 'assets/img/gad_top2.jpg' %}"
-                                            alt="feature-top">
-                                    </div>
-                                    <!-- top_article_img -->
-
-                                    <span class="tag black">Gadgets</span>
-
-                                    <div class="category_article_title">
-                                        <h2><a href="single.html" target="_self">Apple launches
-                                                photo-centric app for iPads and Android
-                                                tablets</a></h2>
-                                    </div>
-                                    <!-- category_article_title -->
-
-                                    <div class="article_date"><a href="#">10Aug- 2015</a>, by: <a href="#">Eric joan</a>
-                                    </div>
-                                    <!-- article_date -->
-
-                                    <div class="category_article_content">
-                                        Collaboratively administrate empowered markets via plug-and-play
-                                        networks. Dynamically
-                                        procrastinate B2C users after installed base benefits.
-                                        Dramatically visualize customer directed
-                                        convergence without revolutionary ROI.
-                                    </div>
-                                    <!-- category_article_content -->
-
-                                    <div class="article_social">
-                                        <span><i class="fa fa-share-alt"></i><a href="#">424</a>Shares</span>
-                                        <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
-                                    </div>
-                                    <!-- article_social -->
-
-                                </div>
-                                <!-- category_article_body -->
-                            </div>
+                        {% for post_catalog_three in post_catalog_three %}
+                        {% if forloop.first %}
+                        <div class="article_title header_blue">
+                            <h2><a href="{{ post_catalog_five.category.get_absolute_url }}" target="_self">
+                                {{ post_catalog_three.category }}</a></h2>
                         </div>
+                        {% endif %}
+                        <div class="">
+                            <div class="">
+                                <div class="col-md-6" style="margin-bottom: 45px; padding: 0px;">
+                                    <div class="category_article_body">
+                                        <div class="top_article_img">
+                                            <a href="{{ post_catalog_three.get_absolute_url }}" target="_self">
+                                                <img class="img-responsive" style="width: 360px; height:274px;"
+                                                    src="{{ post_catalog_three.thumbnail.url }}" alt="feature-top">
+                                            </a>
+                                        </div>
+                                        <!-- top_article_img -->
+    
+                                        {% for tag in post_catalog_three.tags.all %}
+                                            <span class="tag blue" style="margin-right: 1px;">
+                                                <a href="{% url 'newspaper:tag' tag %}" target="_self">
+                                                {{ tag }}</a>
+                                            </span>
+                                        {% endfor %}
+    
+                                        <div class="category_article_title">
+                                            <h2><a href="{{ post_catalog_three.get_absolute_url }}" target="_self">
+                                                {{ post_catalog_three.title }} </a></h2>
+                                        </div>
+                                        <!-- category_article_title -->
+    
+                                        <div class="category_article_date"><a href="#">
+                                            {{ post_catalog_three.timestamp|date:"j M Y" }}</a>, by:
+                                            <a href="#">Eric joan</a>
+                                        </div>
+                                        <!----category_article_date------>
+                                        <!-- category_article_date -->
+    
+                                        <div class="category_article_content">
+                                            {{ post_catalog_three.description|truncatechars:100 }}.
+                                        </div>
+                                        <!-- category_article_content -->
+    
+                                        <div class="media_social">
+                                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
+                                                Shares</span>
+                                            <span><i class="fa fa-comments-o"></i><a href="#">
+                                                {{ post_catalog_three.get_comment_count }}</a>
+                                                Comments</span>
+                                        </div>
+                                        <!-- media_social -->
+                                    </div>
+                                    <!-- category_article_body -->
+                                </div>
+                                <!-- col-md-6 -->
+                            </div>
+                            <!-- row -->
+                        </div>
+                        {% if forloop.last %}
+                        <p class="divider"><a href="{{ post_catalog_three.category.get_absolute_url }}">More
+                                News&nbsp;&raquo;</a></p>
+                        {% endif %}
+                        {% endfor %}
                         <!-- row -->
-
                     </div>
-                    <!-- category_article_wrapper -->
-
-                    <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
                 </div>
                 <!-- Gadget News Section -->
 
@@ -433,7 +248,7 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="top_article_img">
-                                    <a href="single.html" target="_self">
+                                    <a href="{{ post_catalog_four.category.get_absolute_url }}" target="_self">
                                         <img class="img-responsive" src="{{ post_catalog_four.thumbnail.url }}"
                                             alt="feature-top">
                                     </a>
@@ -442,8 +257,12 @@
 
                             </div>
                             <div class="col-md-7">
-                                <span class="tag orange">{{ post_catalog_four.category }} </span>
-
+                                {% for tag in post_catalog_four.tags.all %}
+                                    <span class="tag orange" style="margin-right: 1px;">
+                                        <a href="{% url 'newspaper:tag' tag %}" target="_self">
+                                        {{ tag }}</a>
+                                    </span>
+                                {% endfor %}
                                 <div class="category_article_title">
                                     <h2><a href="{{ post_catalog_four.get_absolute_url }}" target="_self">
                                             {{ post_catalog_four.title }} </a></h2>
@@ -502,14 +321,12 @@
                                     </div>
                                     <!-- top_article_img -->
 
-                                    <span class="tag blue">
-
-                                        {% for tag in post_catalog_five.tags.all %}
-                                        <a href="{{ post_catalog_five.category.get_absolute_url }}" target="_self">
+                                    {% for tag in post_catalog_five.tags.all %}
+                                    <span class="tag blue" style="margin-right: 1px;">
+                                        <a href="" target="_self">
                                             {{ tag }}</a>
-                                        {% endfor %}
-                                    </span>
-
+                                        </span>
+                                    {% endfor %}
                                     <div class="category_article_title">
                                         <h2><a href="{{ post_catalog_five.get_absolute_url }}" target="_self">
                                             {{ post_catalog_five.title }} </a></h2>

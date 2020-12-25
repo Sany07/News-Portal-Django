@@ -18,11 +18,11 @@ class HomeView(TemplateView):
     def get_home_page_post_list(self):
         home_page_settings = HomePageSettings.objects.last()
         news_list = News.objects.all()
-        post_catalog_one = news_list.filter(category=home_page_settings.post_catalog_one)
-        post_catalog_two = news_list.filter(category=home_page_settings.post_catalog_two)
-        post_catalog_three = news_list.filter(category=home_page_settings.post_catalog_three)
-        post_catalog_four = news_list.filter(category=home_page_settings.post_catalog_four)
-        post_catalog_five = news_list.filter(category=home_page_settings.post_catalog_five)
+        post_catalog_one = news_list.filter(category=home_page_settings.post_catalog_one).order_by('-id')[:3]
+        post_catalog_two = news_list.filter(category=home_page_settings.post_catalog_two).order_by('-id')[:4]
+        post_catalog_three = news_list.filter(category=home_page_settings.post_catalog_three).order_by('-id')[:3]
+        post_catalog_four = news_list.filter(category=home_page_settings.post_catalog_four).order_by('-id')[:4]
+        post_catalog_five = news_list.filter(category=home_page_settings.post_catalog_five).order_by('-id')[:3]
         return home_page_settings.hot_news, post_catalog_one, post_catalog_two, post_catalog_three, post_catalog_four , post_catalog_five
 
     def get_context_data(self, **kwargs):
@@ -102,3 +102,12 @@ class PostSingleView(DetailView, FormMixin):
     def form_invalid(self, form):
         """If the form is invalid, render the invalid form."""
         return HttpResponseRedirect(self.get_success_url())
+
+
+def FilterByTag(request, tag):
+    news_list = News.objects.filter(tags__name__in=['Mobile'], is_published=True).order_by('-id')
+    context ={
+        'news_list':news_list,
+        'tag':tag
+    }
+    return render(request,'site/pages/tag.html', context)

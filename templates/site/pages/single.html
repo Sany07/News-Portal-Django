@@ -92,7 +92,7 @@
                         <div class="entity_tag">
 
                             {% for tag in news.tags.all %}
-                            <span class="blank"><a href="#">{{ tag }}</a></span>
+                            <span class="blank"><a href="{% url 'newspaper:tag' tag %}">{{ tag }}</a></span>
                             {% endfor %}
 
                         </div>
