@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
+from django.shortcuts import render,  HttpResponseRedirect, redirect
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import FormMixin
+from django.views.generic.list import MultipleObjectMixin
 from django.urls import reverse, reverse_lazy
 
-from mainsite.models import HomePageSettings
 
+from mainsite.models import HomePageSettings
 from news.models import Category, News
 from comment.models import Comment
 from comment.form import CommentModelForm
@@ -46,17 +47,17 @@ class SingleView(TemplateView):
 class BlogView(TemplateView):
     template_name = 'site/pages/blog.html'
 
-
-class CategoryView(DetailView):
-    model = Category
+class CategoryView(DetailView, MultipleObjectMixin): #MultipleObjectMixin for adding paginate..
+    model = Category                                 #Functionality for news
+    paginate_by = 6
     context_object_name = 'category'
     template_name = 'site/pages/category.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['news_list'] = News.objects.filter(
+        # context = super().get_context_data(**kwargs)
+        news_list = News.objects.filter(
             category=self.object.id, is_published=True).order_by('-id')
-
+        context= super().get_context_data(object_list=news_list, **kwargs)
         return context
 
 
@@ -105,9 +106,10 @@ class PostSingleView(DetailView, FormMixin):
 
 
 def FilterByTag(request, tag):
-    news_list = News.objects.filter(tags__name__in=['Mobile'], is_published=True).order_by('-id')
+    news_list = News.objects.filter(tags__name__in=[tag], is_published=True).order_by('-id')
     context ={
         'news_list':news_list,
         'tag':tag
     }
     return render(request,'site/pages/tag.html', context)
+

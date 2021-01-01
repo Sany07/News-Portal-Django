@@ -1,0 +1,31 @@
+{% if page_obj.has_other_pages %}
+
+<nav aria-label="Page navigation" class="pagination_section">
+  <ul class="pagination">
+  <!-- <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
+    <span>Showing {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} Pages</span>
+  </div> -->
+      {% if page_obj.has_previous %}
+        <li>
+          <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
+        </li>
+      {% endif %}
+      {% for i in page_obj.paginator.page_range %}
+        {% if page_obj.number == i %}
+        <li>
+          <a class="active" style="color: rgb(197, 38, 38)">{{ i }}</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="?page={{ i }}">{{ i }}</a>
+        </li>  
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li>
+          <a href="?page={{ page_obj.next_page_number }}" aria-label="Next" class="active"> <span aria-hidden="true">&raquo;</span> </a>
+        </li>
+      {% endif %}
+  </ul>
+</nav>
+{% endif %}

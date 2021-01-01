@@ -21,10 +21,9 @@
             <div class="entity_title header_purple">
                 <h1><a href="{{ category.get_absolute_url }}" target="_blank">{{ category }}</a></h1>
             </div>
-
             <!-- entity_title -->
             <div class="row">
-                {% for news in news_list %}
+                {% for news in object_list %}
                 {% if forloop.first %}
                 <div class="entity_wrapper" style="margin-left:17px">
                     <div class="entity_thumb">
@@ -107,29 +106,11 @@
 
             </div>
             <!-- row -->
-
-
             <!-- widget_advertisement -->
-
-
-
-            <nav aria-label="Page navigation" class="pagination_section">
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next" class="active"> <span aria-hidden="true">&raquo;</span> </a>
-                    </li>
-                </ul>
-            </nav>
+            {% if is_paginated %}
+                {% include 'site/includes/_paginator.html' %}
+            {% endif %}
             <!-- navigation -->
-
         </div>
         <!-- col-md-8 -->
         <!-- sidebar -->
