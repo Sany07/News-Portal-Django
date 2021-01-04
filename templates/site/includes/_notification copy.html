@@ -1,13 +1,13 @@
 {% load static %}
 {% if messages %}
-<!-- <link href="{% static 'assets/css/toastr.css' %}" rel="stylesheet">
-<script src="{% static 'assets/js/toastr.js' %}"></script> -->
+<link href="{% static 'assets/css/toastr.css' %}" rel="stylesheet">
+<script src="{% static 'assets/js/toastr.js' %}"></script>
 
 {% for message in messages %}
 
 <script>
-  
     (function($) {
+
     var type = "{{ message.tags }}";
       console.log(type);
       switch(type){

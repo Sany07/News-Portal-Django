@@ -96,3 +96,26 @@ $(function () {
 $(document).on('click', '.m-menu .dropdown-menu', function (e) {
     e.stopPropagation()
 })
+
+$(document).on('submit', '#post-submit-ajax',function(e){
+  e.preventDefault();
+  var form = $(this);
+  $.ajax({
+      type: form.attr("method"),
+      url:form.attr("action"),
+      data: form.serialize(),
+      // data:{
+      //     email:$('#subscribe-email').val(),
+      //     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      //     action: 'post',
+      // },
+      
+      success:function(success){
+        console.log(success.status);
+        console.log(success.msg);
+      },
+      error : function(err) {
+        console.log(err);
+  }
+  });
+});
