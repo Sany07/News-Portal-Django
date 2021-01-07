@@ -30,3 +30,19 @@ class HomePageSettings(models.Model):
 
     def __str__(self):
         return self.hot_news.title
+
+class SocialSetting(models.Model):
+    icon = models.CharField(max_length=20)
+    url = models.URLField(blank=False, null=False)
+
+
+    class Meta:
+        verbose_name = "Social Setting"
+        verbose_name_plural = "Social Settings"
+        db_table = "socialsettings"
+
+    def __str__(self):
+        return self.name
+    
+    # def get_absolute_url(self):
+    #     return reverse("newspaper:category", kwargs={'slug': self.slug})

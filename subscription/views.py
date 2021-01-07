@@ -6,7 +6,6 @@ from .forms import EmailForm
 
 def email_sub(request):
     response_data = {}
-    
     success_status = 'success'
     success_msg = 'Your Email Successfully Added'
     error_status = 'error'
@@ -16,27 +15,21 @@ def email_sub(request):
         form = EmailForm(request.POST)
         if form.is_valid():
             is_success = form.save()
-            
-            if is_success and request.is_ajax()  :
+            if is_success and request.is_ajax():
                 response_data['status'] = success_status
                 response_data['msg'] = success_msg
-                
+
             elif is_success:    
                 messages.success(request, success_msg)
 
             else:
-                print(is_success)
-                # messages.error(request, error_msg)
                 response_data['status'] = error_status 
-                response_data['msg'] = error_msg
-
+                response_data['msg'] = form.errors
             return JsonResponse(response_data, safe=False)
 
         else:
-            # messages.error(request, error_msg)
             response_data['status'] = error_status 
             response_data['msg'] = error_msg
-
             return JsonResponse(response_data, safe=False)
 
-        return redirect('/')
+    return redirect('/')

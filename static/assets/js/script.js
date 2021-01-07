@@ -112,6 +112,9 @@ $(document).on('submit', '#post-submit-ajax',function(e){
       
       success:function(res){
         tostr(res);
+        $("#post-submit-ajax").trigger('reset');
+        console.log(res);
+
       },
       error : function(err) {
         console.log(err);

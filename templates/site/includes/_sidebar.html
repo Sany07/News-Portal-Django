@@ -14,8 +14,7 @@
             <div class="media-body">
                 <h3 class="media-heading">
                     <a href="{{ news.get_absolute_url }}" target="_self">{{ news.title }}</a>
-                </h3> <span class="media-date"><a href="#">{{ news.timestamp|date:"j M Y" }}</a>, by: <a href="#">Eric
-                        joan</a></span>
+                </h3> <span class="media-date"><a href="#">{{ news.timestamp|date:"j M Y" }}</a>, by: <a href="#">{{ news.author|title }}</a></span>
 
                 <div class="widget_article_social">
                     <span>
