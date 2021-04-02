@@ -119,21 +119,21 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            {% for related_post in related_posts %}
+                            {% for post in related_posts %}
                             <div class="col-md-6">
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="#"><img class="media-object" style="width: 122px; height: 122px;"
-                                                src="{{ related_post.thumbnail.url }}"
+                                                src="{{ post.thumbnail.url }}"
                                                 alt="Generic placeholder image"></a>
                                     </div>
                                     <div class="media-body">
                                         <span class="tag purple"><a href="category.html"
-                                                target="_self">{{ related_post.category }}</a></span>
+                                                target="_self">{{ post.category }}</a></span>
 
                                         <h3 class="media-heading"><a href="{{ related_post.get_absolute_url }}"
-                                                target="_self">{{ related_post.title }}</a></h3>
-                                        <span class="media-date">{{ related_post.timestamp|date:"j M Y" }}, by: <a
+                                                target="_self">{{ post.title }}</a></h3>
+                                        <span class="media-date">{{ post.timestamp|date:"j M Y" }}, by: <a
                                                 href="#">Eric
                                                 joan</a></span>
 
@@ -201,7 +201,7 @@
 
                             {% endfor %}
 
-
+                            {% if user.is_authenticated %} 
                             <div class="entity_comments toggle-rp" style="display: none;">
                                 <div class="entity_inner__title header_black">
                                     <h2>Add a Reply</h2>
@@ -224,6 +224,7 @@
                                 <!--Entity Comments From -->
 
                             </div>
+                            {% endif %} 
                         </div>
                     </div>
                     {% endfor %}
@@ -235,9 +236,9 @@
                     <img class="img-responsive" src="{% static 'assets/img/category_advertisement.jpg' %}"
                         alt="feature-top">
                 </div>
-                <!--Advertisement-->
-
                 <div class="entity_comments">
+                {% if user.is_authenticated %} 
+                <!--Advertisement-->
                     <div class="entity_inner__title header_black">
                         <h2>Add a Comment</h2>
                     </div>
@@ -255,10 +256,21 @@
                         </form>
                     </div>
                     <!--Entity Comments From -->
+                {% else %} 
+                    <div class="entity_inner__title header_black">
+                        <h2>Login For Comment</h2>
+                    </div>
 
-                </div>
+                    <div class="entity_comment_from">
+                        
+                        <button type="submit" class="btn btn-submit red">Login</button>
+                        
+                    </div>
+
+
                 <!--Entity Comments -->
-
+                {% endif %} 
+                </div>
             </div>
             <!--Left Section-->
             <!--sidebar-->

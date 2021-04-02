@@ -4,7 +4,6 @@ from django.views.generic.edit import FormMixin
 from django.views.generic.list import MultipleObjectMixin
 from django.urls import reverse, reverse_lazy
 
-
 from mainsite.models import HomePageSettings
 from news.models import Category, News
 from comment.models import Comment
@@ -73,7 +72,7 @@ class PostSingleView(DetailView, FormMixin):
 
     def get_related_post_filter_by_tag(self):
         for tag in Tag.objects.all():
-            return self.get_related_post_by_category().filter(tags=tag)[:4]
+            return self.get_related_post_by_category().filter(tags__name__in=[tag])[:4]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -96,7 +95,10 @@ class PostSingleView(DetailView, FormMixin):
     def form_valid(self, comment_form):
         """If the form is valid, start save operation."""
         form = comment_form.save(commit=False)
-        form.user = self.request.user
+        if self.request.user:
+            form.user = self.request.user
+        else:
+            form.user = None
         form.save()
         return HttpResponseRedirect(self.get_success_url())
 

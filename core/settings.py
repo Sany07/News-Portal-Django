@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'subscription.apps.SubscriptionConfig',
 
     #3rd party
-    'taggit'
+    'taggit',
+    'rest_framework',
+     'taggit_serializer',
 
 ]
 

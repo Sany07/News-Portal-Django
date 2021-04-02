@@ -19,10 +19,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('mainsite.urls')),
+    path('', include('mainsite.urls', namespace='mainsite')),
     path('comment/', include('comment.urls')),
     path('subscribe/', include('subscription.urls')),
     path('admin/', admin.site.urls),
+    path('api/',include(
+            [
+                # path("swagger", schema_view.with_ui("swagger", cache_timeout=0)),
+                # path("", include("accounts.api.urls")),
+                path('', include('mainsite.api.urls')),
+                # path("", include("tags.api.urls")),
+                # path('auth/oauth/', include('rest_framework_social_oauth2.urls'))
+            ]
+        )
+    ),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

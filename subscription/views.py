@@ -19,7 +19,7 @@ def email_sub(request):
                 response_data['status'] = success_status
                 response_data['msg'] = success_msg
 
-            elif is_success:    
+            elif is_success:
                 messages.success(request, success_msg)
 
             else:
