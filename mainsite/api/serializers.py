@@ -24,11 +24,27 @@ class AuthorDetailSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class CategorySerializer(serializers.ModelSerializer):
+    news = serializers.SerializerMethodField()
     class Meta:
         model = Category
         fields = "__all__"
+    
+    def get_news(self, obj):
+        print(obj.id)
+        news_list = News.objects.filter(
+            category=obj.id, is_published=True).order_by('-id').values('title')
+        return news_list
 
 class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
+    author = AuthorDetailSerializer(read_only=True)
+    category = CategorySerializer(read_only=True)
+    tags = TagListSerializerField()
+
+    class Meta:
+        model = News
+        fields = "__all__"
+
+class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
     author = AuthorDetailSerializer(read_only=True)
     category = CategorySerializer(read_only=True)
     tags = TagListSerializerField()
