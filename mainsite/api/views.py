@@ -5,8 +5,8 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
-from .serializers import NewsSerializer
 from news.models import Category, News
+from .serializers import NewsSerializer, CategorySerializer
 
 
 class NewsApiView(ListAPIView):
@@ -15,11 +15,13 @@ class NewsApiView(ListAPIView):
     permission_classes = [AllowAny]
 
 
-        
-
 class SingleNewsApiView(RetrieveAPIView):
     serializer_class = NewsSerializer
     queryset = serializer_class.Meta.model.objects.filter(is_published=True)
     permission_classes = [AllowAny]
 
 
+class CategoryApiView(ListAPIView):
+    serializer_class = CategorySerializer
+    queryset = serializer_class.Meta.model.objects.all()
+    permission_classes = [AllowAny]

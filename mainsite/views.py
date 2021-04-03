@@ -114,4 +114,3 @@ def FilterByTag(request, tag):
         'tag':tag
     }
     return render(request,'site/pages/tag.html', context)
-

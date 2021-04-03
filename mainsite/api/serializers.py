@@ -1,16 +1,12 @@
 from rest_framework import serializers
 from rest_framework.response import Response
-
-
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
 from news.models import News, Author, Category
 from taggit.models import Tag
-
-from taggit_serializer.serializers import (TagListSerializerField,
-                                           TaggitSerializer)
+from taggit_serializer.serializers import (TagListSerializerField,TaggitSerializer)
 
 
 
@@ -27,28 +23,10 @@ class AuthorDetailSerializer(serializers.ModelSerializer):
         model = Author
         fields = "__all__"
 
-
-
-
-# class CategorySerializer(serializers.ModelSerializer):
-#     total_ads = serializers.SerializerMethodField()
-
-#     class Meta:
-#         model = Category
-#         fields = "__all__"
-
-#     def get_total_ads(self, obj):
-#         return obj.ad_set.count()
-
-class TagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tag
-        fields = ["name"]
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ["name"]
+        fields = "__all__"
 
 class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
     author = AuthorDetailSerializer(read_only=True)
@@ -58,7 +36,3 @@ class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
     class Meta:
         model = News
         fields = "__all__"
-    
-
-        
-
