@@ -8,32 +8,7 @@ from news.models import News, Author, Category
 from taggit.models import Tag
 from taggit_serializer.serializers import (TagListSerializerField,TaggitSerializer)
 
-
-
-class UserDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = [
-            'username',
-        ]
-
-class AuthorDetailSerializer(serializers.ModelSerializer):
-    user = UserDetailSerializer(read_only=True)
-    class Meta:
-        model = Author
-        fields = "__all__"
-
-class CategorySerializer(serializers.ModelSerializer):
-    news = serializers.SerializerMethodField()
-    class Meta:
-        model = Category
-        fields = "__all__"
-    
-    def get_news(self, obj):
-        print(obj.id)
-        news_list = News.objects.filter(
-            category=obj.id, is_published=True).order_by('-id').values('title')
-        return news_list
+from mainsite.api.serializers import AuthorDetailSerializer, CategorySerializer
 
 class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
     author = AuthorDetailSerializer(read_only=True)

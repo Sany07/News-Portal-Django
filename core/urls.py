@@ -51,6 +51,8 @@ urlpatterns = [
                 # path("", include("accounts.api.urls")),
                 path('', include('mainsite.api.urls')),
                 path('', include('comment.api.urls')),
+                path('', include('news.api.urls')),
+                # path('', include('news.api.urls')),
                 path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
                 # path("", include("tags.api.urls")),
                 # path('auth/oauth/', include('rest_framework_social_oauth2.urls'))

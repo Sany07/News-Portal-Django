@@ -6,6 +6,7 @@ User = get_user_model()
 
 from comment.models import Comment
 from mainsite.api.serializers import UserDetailSerializer, NewsSerializer
+# from news.api.serializers import  NewsSerializer
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserDetailSerializer(read_only=True)
