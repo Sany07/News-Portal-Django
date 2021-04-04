@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     #3rd party
     'taggit',
     'rest_framework',
-     'taggit_serializer',
+    'taggit_serializer',
+    'drf_yasg',
 
 ]
 

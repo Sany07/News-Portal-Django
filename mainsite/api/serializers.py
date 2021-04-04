@@ -31,9 +31,9 @@ class CategorySerializer(serializers.ModelSerializer):
     
     def get_news(self, obj):
         print(obj.id)
-        news_list = News.objects.filter(
+        return News.objects.filter(
             category=obj.id, is_published=True).order_by('-id').values('title')
-        return news_list
+        # news_list = NewsSerializer(News.objects.filter(category=obj.id, is_published=True).first()).data
 
 class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
     author = AuthorDetailSerializer(read_only=True)
