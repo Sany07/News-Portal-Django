@@ -49,7 +49,6 @@ class News(models.Model):
     # ratings = GenericRelation(Rating, related_query_name='ratings')
     is_published = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
-    # instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
     tags = TaggableManager()
 
     class Meta:
