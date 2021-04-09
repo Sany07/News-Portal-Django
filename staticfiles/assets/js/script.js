@@ -110,12 +110,33 @@ $(document).on('submit', '#post-submit-ajax',function(e){
       //     action: 'post',
       // },
       
-      success:function(success){
-        console.log(success.status);
-        console.log(success.msg);
+      success:function(res){
+        tostr(res);
+        $("#post-submit-ajax").trigger('reset');
+        console.log(res);
+
       },
       error : function(err) {
         console.log(err);
-  }
+    }
   });
 });
+
+
+function tostr(res){
+    var type = res.status;
+        switch(type){
+            case 'info':
+                toastr.info(res.msg);
+                break;
+            case 'warning':
+                toastr.warning(res.msg);
+                break;
+            case 'success':
+                toastr.success(res.msg);
+                break;
+            case 'error':
+                toastr.error(res.msg);
+                break;
+        } 
+}
