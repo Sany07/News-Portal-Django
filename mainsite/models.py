@@ -28,8 +28,8 @@ class HomePageSettings(models.Model):
         verbose_name_plural = "Home Page Settings"
         db_table = "homepagesettings"
 
-    def __str__(self):
-        return self.hot_news.title
+    # def __str__(self):
+    #     return self.hot_news.title
 
 class SocialSetting(models.Model):
     icon = models.CharField(max_length=20)
