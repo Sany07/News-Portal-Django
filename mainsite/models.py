@@ -16,12 +16,12 @@ class SiteSettings(models.Model):
         return self.sitename
 
 class HomePageSettings(models.Model):
-    hot_news = models.ForeignKey(News, on_delete=models.CASCADE, related_name='hot_news')
-    post_catalog_one = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_one')
-    post_catalog_two = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_two')
-    post_catalog_three = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_three')
-    post_catalog_four = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_four')
-    post_catalog_five = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_five')
+    hot_news = models.ForeignKey(News, on_delete=models.CASCADE, related_name='hot_news',blank=True,null=True)
+    post_catalog_one = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_one',blank=True,null=True)
+    post_catalog_two = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_two',blank=True,null=True)
+    post_catalog_three = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_three',blank=True,null=True)
+    post_catalog_four = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_four',blank=True,null=True)
+    post_catalog_five = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_five',blank=True,null=True)
 
     class Meta:
         verbose_name = "Home Page Setting"
