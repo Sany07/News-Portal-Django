@@ -16,4 +16,4 @@ def custom_context_processor(request):
         return {'categories': categories, 'popular_news':popular_news, 'most_commented': most_commented}
     
     except:
-        return None
+        return {'categories': None, 'popular_news':None, 'most_commented': None}
