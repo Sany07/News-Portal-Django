@@ -19,12 +19,12 @@ class HomeView(TemplateView):
         def get_home_page_post_list(self):
             home_page_settings = HomePageSettings.objects.last()
             news_list = News.objects.all()
-                post_catalog_one = news_list.filter(category=home_page_settings.post_catalog_one).order_by('-id')[:3]
-                post_catalog_two = news_list.filter(category=home_page_settings.post_catalog_two).order_by('-id')[:2]
-                post_catalog_three = news_list.filter(category=home_page_settings.post_catalog_three).order_by('-id')[:2]
-                post_catalog_four = news_list.filter(category=home_page_settings.post_catalog_four).order_by('-id')[:3]
-                post_catalog_five = news_list.filter(category=home_page_settings.post_catalog_five).order_by('-id')[:2]
-                return home_page_settings.hot_news, post_catalog_one, post_catalog_two, post_catalog_three, post_catalog_four , post_catalog_five
+            post_catalog_one = news_list.filter(category=home_page_settings.post_catalog_one).order_by('-id')[:3]
+            post_catalog_two = news_list.filter(category=home_page_settings.post_catalog_two).order_by('-id')[:2]
+            post_catalog_three = news_list.filter(category=home_page_settings.post_catalog_three).order_by('-id')[:2]
+            post_catalog_four = news_list.filter(category=home_page_settings.post_catalog_four).order_by('-id')[:3]
+            post_catalog_five = news_list.filter(category=home_page_settings.post_catalog_five).order_by('-id')[:2]
+            return home_page_settings.hot_news, post_catalog_one, post_catalog_two, post_catalog_three, post_catalog_four , post_catalog_five
 
         def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
@@ -35,11 +35,11 @@ class HomeView(TemplateView):
             context['post_catalog_three'] = results[3]
             context['post_catalog_four'] = results[4]
             context['post_catalog_five'] = results[5]
-
             return context
-        
     except:
-        return None
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            return context
 
 class SingleView(TemplateView):
     template_name = 'site/pages/single.html'
