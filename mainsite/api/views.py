@@ -42,17 +42,6 @@ class HomePageApiView(APIView):
 
         return Response(data, status=status.HTTP_200_OK)
 
-class NewsApiView(ListAPIView):
-    serializer_class = NewsSerializer
-    queryset = serializer_class.Meta.model.objects.filter(is_published=True)
-    permission_classes = [AllowAny]
-
-
-class SingleNewsApiView(RetrieveAPIView):
-    serializer_class = NewsDetailSerializer
-    queryset = serializer_class.Meta.model.objects.filter(is_published=True)
-    permission_classes = [AllowAny]
-
 
 class CategoryApiView(ListAPIView):
     serializer_class = CategorySerializer
@@ -63,3 +52,13 @@ class SingleCategoryApiView(RetrieveAPIView):
     serializer_class = CategorySerializer
     queryset = serializer_class.Meta.model.objects.all()
     permission_classes = [AllowAny]
+
+
+class NewsFilterByTag(APIView):
+
+    def get(self, request, tag, format=None):
+        serializer_class = NewsSerializer
+        queryset =serializer_class.Meta.model.objects.filter(tags__name__in=[tag], is_published=True).order_by('-id').values()
+        return Response(queryset, status=status.HTTP_200_OK)
+
+

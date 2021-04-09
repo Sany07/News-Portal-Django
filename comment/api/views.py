@@ -19,7 +19,7 @@ class CommentList(ListCreateAPIView):
     # def perform_create(self, serializer):
     #     serializer.save(user=self.request.user)
     #     data = {"message": "Your commet was posted"}
-    #     return Response({"success": data,"comment":serializer.data}, status=status.HTTP_201_CREATED)
+    #     return Response({"success": data,"comment":serializer.data})
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

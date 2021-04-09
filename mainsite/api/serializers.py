@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 User = get_user_model()
+from django.db.models import Count
 
 
 from news.models import News, Author, Category
@@ -34,20 +35,36 @@ class CategorySerializer(serializers.ModelSerializer):
             category=obj.id, is_published=True).order_by('-id').values('title')
         return news_list
 
-# class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
-#     author = AuthorDetailSerializer(read_only=True)
-#     category = CategorySerializer(read_only=True)
-#     tags = TagListSerializerField()
 
-#     class Meta:
-#         model = News
-#         fields = "__all__"
+class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
+    author = AuthorDetailSerializer(read_only=True)
+    category = CategorySerializer(read_only=True)
+    tags = TagListSerializerField()
+    total_comment_count = serializers.SerializerMethodField()
+    # custom_field = serializers.SerializerMethodField()
+    class Meta:
+        model = News
+        fields = "__all__"
 
-# class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
-#     author = AuthorDetailSerializer(read_only=True)
-#     category = CategorySerializer(read_only=True)
-#     tags = TagListSerializerField()
+    def get_total_comment_count(self, obj):
+        comment_count= obj.post.aggregate(Count('post__id'))
+        return comment_count['post__id__count']
 
-#     class Meta:
-#         model = News
-#         fields = "__all__"
+    # def get_custom_field(self, obj):
+    #     foo = self.context.get('foo')
+    #     print(self.context.get('foo'))
+    #     return "custom data"
+
+class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
+    author = AuthorDetailSerializer(read_only=True)
+    category = CategorySerializer(read_only=True)
+    tags = TagListSerializerField()
+    related_post = serializers.SerializerMethodField()
+
+    class Meta:
+        model = News
+        fields = "__all__"
+
+    def get_related_post(self,obj):
+        return self.Meta.model.objects.filter(is_published='True', category=obj.category.id).exclude(id=obj.id).order_by('-id').values('id','title')
+        

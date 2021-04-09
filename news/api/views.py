@@ -12,6 +12,10 @@ class NewsApiView(ListAPIView):
     queryset = serializer_class.Meta.model.objects.filter(is_published=True)
     permission_classes = [AllowAny]
 
+    # def get_serializer_context(self):
+    #     context = super().get_serializer_context()
+    #     context['foo'] = 'bar'
+    #     return context
 
 class SingleNewsApiView(RetrieveAPIView):
     serializer_class = NewsDetailSerializer
