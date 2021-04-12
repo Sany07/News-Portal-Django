@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 from .serializers import NewsSerializer, CategorySerializer, NewsDetailSerializer
 
@@ -54,11 +55,11 @@ class SingleCategoryApiView(RetrieveAPIView):
     permission_classes = [AllowAny]
 
 
-class NewsFilterByTag(APIView):
 
-    def get(self, request, tag, format=None):
-        serializer_class = NewsSerializer
-        queryset =serializer_class.Meta.model.objects.filter(tags__name__in=[tag], is_published=True).order_by('-id').values()
-        return Response(queryset, status=status.HTTP_200_OK)
-
-
+@api_view(['GET'])
+def NewsFilterByTag(request, tag):
+    if request.method == 'GET':
+        news_list = News.objects.filter(tags__name__in=[tag], is_published=True).order_by('-id')
+        serializer = NewsSerializer(news_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
