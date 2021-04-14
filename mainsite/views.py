@@ -22,7 +22,8 @@ class HomeView(TemplateView):
         post_catalog_three = news_list.filter(category=home_page_settings.post_catalog_three).order_by('-id')[:2]
         post_catalog_four = news_list.filter(category=home_page_settings.post_catalog_four).order_by('-id')[:3]
         post_catalog_five = news_list.filter(category=home_page_settings.post_catalog_five).order_by('-id')[:2]
-        return home_page_settings.hot_news, post_catalog_one, post_catalog_two, post_catalog_three, post_catalog_four , post_catalog_five
+        return ( home_page_settings.hot_news, post_catalog_one, post_catalog_two, post_catalog_three,
+                     post_catalog_four , post_catalog_five, home_page_settings.trending,home_page_settings.editor_choice)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -33,6 +34,8 @@ class HomeView(TemplateView):
         context['post_catalog_three'] = results[3]
         context['post_catalog_four'] = results[4]
         context['post_catalog_five'] = results[5]
+        context['trending'] = results[6]
+        context['editor_choice'] = results[7]
 
         return context
         

@@ -140,3 +140,7 @@ function tostr(res){
                 break;
         } 
 }
+
+
+var date = new Date();
+document.getElementById("date_header").innerHTML = date.toDateString();

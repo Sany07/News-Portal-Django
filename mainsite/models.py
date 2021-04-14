@@ -17,6 +17,8 @@ class SiteSettings(models.Model):
 
 class HomePageSettings(models.Model):
     hot_news = models.ForeignKey(News, on_delete=models.CASCADE, related_name='hot_news',blank=True,null=True)
+    trending = models.ForeignKey(News, on_delete=models.CASCADE, related_name='trending',blank=True,null=True)
+    editor_choice = models.ForeignKey(News, on_delete=models.CASCADE, related_name='editor_choice',blank=True,null=True)
     post_catalog_one = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_one',blank=True,null=True)
     post_catalog_two = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_two',blank=True,null=True)
     post_catalog_three = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_catalog_three',blank=True,null=True)
@@ -28,8 +30,6 @@ class HomePageSettings(models.Model):
         verbose_name_plural = "Home Page Settings"
         db_table = "homepagesettings"
 
-    # def __str__(self):
-    #     return self.hot_news.title
 
 class SocialSetting(models.Model):
     icon = models.CharField(max_length=20)
@@ -43,6 +43,3 @@ class SocialSetting(models.Model):
 
     def __str__(self):
         return self.name
-    
-    # def get_absolute_url(self):
-    #     return reverse("newspaper:category", kwargs={'slug': self.slug})

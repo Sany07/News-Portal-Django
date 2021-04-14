@@ -2,14 +2,11 @@ from news.models import News, Category
 from comment.models import Comment
 from django.db.models import Count
 
-# def categories_context_processor(request):
-#     categories = Category.objects.all()
-    
-#     return {'categories': categories}
+
 
 def custom_context_processor(request):
     try:
-        categories = Category.objects.all()
+        categories = Category.objects.all()[:6]
         news_list = News.objects.all()
         popular_news = news_list.filter(category=categories[0]).annotate(Count('post__id')).order_by('-id')
         most_commented = news_list.annotate(Count('post__id')).order_by('-post__id__count')[:4]    

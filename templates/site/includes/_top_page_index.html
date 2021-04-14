@@ -8,25 +8,24 @@
         <!-- feature_article_img -->
 
         <div class="feature_article_inner">
-            <div class="tag_lg purple"><a href="category.html">Top Viewed</a></div>
+            <div class="tag_lg purple">Trending</div>
             <div class="feature_article_title">
-                <h1><a href="single.html" target="_self">Alcatel's $180 Idol 3 4.7 is a </a>
+                <h1><a href="{{ trending.get_absolute_url }}" target="_self">{{ trending.title }}</a>
                 </h1>
             </div>
             <!-- feature_article_title -->
 
-            <div class="feature_article_date"><a href="#" target="_self">Stive Clark</a>,<a href="#" target="_self">Aug
-                    4, 2015</a></div>
+            <div class="feature_article_date"><a href="#" target="_self">{{ trending.author|title }}</a>, {{ trending.timestamp|date:"j M Y" }}</div>
             <!-- feature_article_date -->
 
             <div class="feature_article_content">
-                In a move to address mounting concerns about security on Android...
+                {{ trending.description|truncatechars:100 }}
             </div>
             <!-- feature_article_content -->
 
             <div class="article_social">
                 <span><i class="fa fa-share-alt"></i><a href="#">424</a>Shares</span>
-                <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
+                <span><i class="fa fa-comments-o"></i><a href="{{ trending.get_absolute_url }}">{{ trending.get_comment_count }}</a>Comments</span>
             </div>
             <!-- article_social -->
 
@@ -47,25 +46,24 @@
         <!-- feature_article_img -->
 
         <div class="feature_article_inner">
-            <div class="tag_lg blue"><a href="category.html">Top Viewed</a></div>
+            <div class="tag_lg blue">Editor Choice</div>
 
             <div class="feature_article_title">
-                <h1><a href="single.html" target="_self">Gadget user good news</a></h1>
+                <h1><a href="{{ editor_choice.get_absolute_url }}" target="_self">{{ editor_choice.title }}</a></h1>
             </div>
             <!-- feature_article_title -->
 
-            <div class="feature_article_date"><a href="#" target="_self">Stive Clark</a>,<a href="#" target="_self">Aug
-                    4, 2015</a></div>
+            <div class="feature_article_date"><a href="#" target="_self">{{ editor_choice.author|title }}</a>, {{ editor_choice.timestamp|date:"j M Y" }}</div>
             <!-- feature_article_date -->
 
             <div class="feature_article_content">
-                In a move to address mounting concerns about security on Android...
+                {{ editor_choice.description|truncatechars:100 }}
             </div>
             <!-- feature_article_content -->
 
             <div class="article_social">
                 <span><i class="fa fa-share-alt"></i><a href="#">424</a>Shares</span>
-                <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
+                <span><i class="fa fa-comments-o"></i><a href="{{ editor_choice.get_absolute_url }}">{{ editor_choice.get_comment_count }}</a>Comments</span>
             </div>
             <!-- article_social -->
 

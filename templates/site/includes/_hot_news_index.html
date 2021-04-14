@@ -9,15 +9,14 @@
         <!-- feature_article_img -->
 
         <div class="feature_article_inner">
-            <div class="tag_lg red"><a href="category.html">Hot News</a></div>
+            <div class="tag_lg red">Hot News</div>
             <div class="feature_article_title">
                 <h1><a href="{{ hot_news.get_absolute_url }}" target="_self">{{ hot_news.title }}</a></h1>
             </div>
             <!-- feature_article_title -->
 
             <div class="feature_article_date"><a href="#" target="_self">{{ hot_news.author|title }}</a> , <a href="#"
-                    target="_self">Aug
-                    4, 2015</a></div>
+                    target="_self">{{ hot_news.timestamp|date:"j M Y" }}</a></div>
             <!-- feature_article_date -->
 
             <div class="feature_article_content">
