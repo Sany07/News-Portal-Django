@@ -43,6 +43,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('', include('mainsite.urls', namespace='mainsite')),
     path('comment/', include('comment.urls')),
+    path('account/', include('account.urls')),
     path('subscribe/', include('subscription.urls')),
     path('admin/', admin.site.urls),
     path('api/',include(

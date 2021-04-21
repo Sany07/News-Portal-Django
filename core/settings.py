@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'comment.apps.CommentConfig',
     'subscription.apps.SubscriptionConfig',
+    'account.apps.AccountConfig',
 
     #3rd party
     'taggit',
