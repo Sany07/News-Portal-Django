@@ -49,7 +49,7 @@ class LogInView(FormView):
     """
     success_url = '/'
     form_class = UserLoginForm
-    template_name = 'mainsite/accounts/login.html'
+    template_name = 'site/pages/login.html'
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
@@ -66,6 +66,7 @@ class LogInView(FormView):
         return self.form_class
 
     def form_valid(self, form):
+        print(form.get_user())
         auth.login(self.request, form.get_user())
         messages.success(self.request, 'You are Successfully logged In')
         return HttpResponseRedirect(self.get_success_url())

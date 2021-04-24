@@ -47,8 +47,8 @@ class RegistrationForm(UserCreationForm):
 
 
 class UserLoginForm(forms.Form):
-    email =  forms.EmailField(
-    widget=forms.EmailInput(attrs={ 'placeholder':'Email',})
+    username =  forms.CharField(
+    widget=forms.TextInput(attrs={ 'placeholder':'Username',})
 ) 
     password = forms.CharField(strip=False,widget=forms.PasswordInput(attrs={
         
@@ -56,13 +56,14 @@ class UserLoginForm(forms.Form):
     }))
 
     def clean(self, *args, **kwargs):
-        email = self.cleaned_data.get("email")
+        username = self.cleaned_data.get("username")
         password = self.cleaned_data.get("password")
 
-        if email and password:
-            self.user = authenticate(email=email, password=password)
+        if username and password:
+            self.user = authenticate(username=username, password=password)
+            print(self.user)
             try:
-                user = User.objects.get(email=email)
+                user = User.objects.get(username=username)
             except User.DoesNotExist:
                 raise forms.ValidationError("User Does Not Exist.")
 
@@ -77,23 +78,3 @@ class UserLoginForm(forms.Form):
     def get_user(self):
         return self.user
 
-
-
-# class EmployeeProfileEditForm(forms.ModelForm):
-
-#     def __init__(self, *args, **kwargs):
-#         super(EmployeeProfileEditForm, self).__init__(*args, **kwargs)
-#         self.fields['first_name'].widget.attrs.update(
-#             {
-#                 'placeholder': 'Enter First Name',
-#             }
-#         )
-#         self.fields['last_name'].widget.attrs.update(
-#             {
-#                 'placeholder': 'Enter Last Name',
-#             }
-#         )
-
-#     class Meta:
-#         model = User
-#         fields = ["first_name", "last_name", "gender"]
