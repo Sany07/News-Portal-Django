@@ -66,7 +66,6 @@ class LogInView(FormView):
         return self.form_class
 
     def form_valid(self, form):
-        print(form.get_user())
         auth.login(self.request, form.get_user())
         messages.success(self.request, 'You are Successfully logged In')
         return HttpResponseRedirect(self.get_success_url())

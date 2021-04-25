@@ -9,6 +9,7 @@ class RegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         UserCreationForm.__init__(self, *args, **kwargs)
         self.fields['username'].label = "User Name"
+        self.fields['email'].label = "Email"
         self.fields['password1'].label = "Password"
         self.fields['password2'].label = "Confirm Password"
 
@@ -61,7 +62,6 @@ class UserLoginForm(forms.Form):
 
         if username and password:
             self.user = authenticate(username=username, password=password)
-            print(self.user)
             try:
                 user = User.objects.get(username=username)
             except User.DoesNotExist:

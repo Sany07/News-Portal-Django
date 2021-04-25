@@ -53,6 +53,7 @@ urlpatterns = [
                 path('', include('comment.api.urls')),
                 path('', include('news.api.urls')),
                 path('', include('subscription.api.urls')),
+                path('account/', include('account.api.urls')),
                 path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
             ]
         )
