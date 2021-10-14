@@ -35,7 +35,7 @@ class HomePageApiView(APIView):
         'post_catalog_one': post_catalog_one.data,
         'post_catalog_two': post_catalog_two.data,
         'post_catalog_three': post_catalog_three.data,
-        'post_catalog_three': post_catalog_three.data,
+        'post_catalog_four': post_catalog_four.data,
         'post_catalog_five': post_catalog_five.data,
         }
 

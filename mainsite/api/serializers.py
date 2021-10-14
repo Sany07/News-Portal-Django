@@ -51,9 +51,9 @@ class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
         return comment_count['post__id__count']
 
     # def get_custom_field(self, obj):
-    #     foo = self.context.get('foo')
-    #     print(self.context.get('foo'))
-    #     return "custom data"
+    #     # foo = self.context.get('foo')
+    #     # print(self.context.get('foo'))
+    #     return self.category
 
 class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
     author = AuthorDetailSerializer(read_only=True)
