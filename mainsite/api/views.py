@@ -6,6 +6,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.db.models import Count
 
 from .serializers import NewsSerializer, CategorySerializer, NewsDetailSerializer
 
@@ -78,3 +79,27 @@ def NewsFilterByTag(request, tag):
         serializer = NewsSerializer(news_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PopularMostCommentedNewsApiView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, format=None):
+
+        categories = Category.objects.all()[:6]
+        news_list = News.objects.all()
+        popular_news = news_list.filter(category=categories[0]).annotate(
+            Count('post__id')).order_by('-id')
+        most_commented = news_list.annotate(
+            Count('post__id')).order_by('-post__id__count')[:4]
+
+        popular_news = NewsSerializer(popular_news, many=True)
+        most_commented = NewsSerializer(most_commented, many=True)
+
+        data = {
+            'popular_news': popular_news.data,
+            'most_commented': most_commented.data,
+
+        }
+
+        return Response(data, status=status.HTTP_200_OK)
