@@ -30,12 +30,18 @@ class HomePageApiView(APIView):
             category=home_page_settings.post_catalog_four).order_by('-id')[:3]
         post_catalog_five = news_list.filter(
             category=home_page_settings.post_catalog_five).order_by('-id')[:2]
+        hot_news = home_page_settings.hot_news
+        trending_new = home_page_settings.trending
+        editor_choice = home_page_settings.editor_choice
 
         post_catalog_one = NewsSerializer(post_catalog_one, many=True)
         post_catalog_two = NewsSerializer(post_catalog_two, many=True)
         post_catalog_three = NewsSerializer(post_catalog_three, many=True)
         post_catalog_four = NewsSerializer(post_catalog_four, many=True)
         post_catalog_five = NewsSerializer(post_catalog_five, many=True)
+        hot_news = NewsSerializer(hot_news)
+        trending_new = NewsSerializer(trending_new)
+        editor_choice = NewsSerializer(editor_choice)
 
         data = {
             'post_catalog_one': post_catalog_one.data,
@@ -43,6 +49,9 @@ class HomePageApiView(APIView):
             'post_catalog_three': post_catalog_three.data,
             'post_catalog_four': post_catalog_four.data,
             'post_catalog_five': post_catalog_five.data,
+            'hot_news': hot_news.data,
+            'trending_new': trending_new.data,
+            'editor_choice': editor_choice.data
         }
 
         return Response(data, status=status.HTTP_200_OK)
