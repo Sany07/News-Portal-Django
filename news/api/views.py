@@ -17,7 +17,10 @@ class NewsApiView(ListAPIView):
     #     context['foo'] = 'bar'
     #     return context
 
+
 class SingleNewsApiView(RetrieveAPIView):
     serializer_class = NewsDetailSerializer
     queryset = serializer_class.Meta.model.objects.filter(is_published=True)
     permission_classes = [AllowAny]
+    lookup_field = 'slug'
+    lookup_url_kwarg = 'slug'
