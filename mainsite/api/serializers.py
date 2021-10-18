@@ -1,14 +1,12 @@
+from taggit_serializer.serializers import (
+    TagListSerializerField, TaggitSerializer)
+from taggit.models import Tag
+from news.models import News, Author, Category
+from django.db.models import Count
 from rest_framework import serializers
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from django.db.models import Count
-
-
-from news.models import News, Author, Category
-from taggit.models import Tag
-from taggit_serializer.serializers import (TagListSerializerField,TaggitSerializer)
-
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -18,21 +16,25 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'username',
         ]
 
+
 class AuthorDetailSerializer(serializers.ModelSerializer):
     user = UserDetailSerializer(read_only=True)
+
     class Meta:
         model = Author
         fields = "__all__"
 
+
 class CategorySerializer(serializers.ModelSerializer):
     news = serializers.SerializerMethodField()
+
     class Meta:
         model = Category
         fields = "__all__"
-    
+
     def get_news(self, obj):
         news_list = News.objects.filter(
-            category=obj.id, is_published=True).order_by('-id').values('title')
+            category=obj.id, is_published=True).order_by('-id').values('title', 'slug', 'description', 'timestamp', 'author', 'thumbnail')
         return news_list
 
 
@@ -42,18 +44,20 @@ class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
     tags = TagListSerializerField()
     total_comment_count = serializers.SerializerMethodField()
     # custom_field = serializers.SerializerMethodField()
+
     class Meta:
         model = News
         fields = "__all__"
 
     def get_total_comment_count(self, obj):
-        comment_count= obj.post.aggregate(Count('post__id'))
+        comment_count = obj.post.aggregate(Count('post__id'))
         return comment_count['post__id__count']
 
     # def get_custom_field(self, obj):
     #     # foo = self.context.get('foo')
     #     # print(self.context.get('foo'))
     #     return self.category
+
 
 class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
     author = AuthorDetailSerializer(read_only=True)
@@ -65,6 +69,5 @@ class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
         model = News
         fields = "__all__"
 
-    def get_related_post(self,obj):
-        return self.Meta.model.objects.filter(is_published='True', category=obj.category.id).exclude(id=obj.id).order_by('-id').values('id','title')
-        
+    def get_related_post(self, obj):
+        return self.Meta.model.objects.filter(is_published='True', category=obj.category.id).exclude(id=obj.id).order_by('-id').values('id', 'title', 'thumbnail')

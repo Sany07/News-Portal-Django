@@ -8,6 +8,6 @@ urlpatterns = [
     path('sidebar/', PopularMostCommentedNewsApiView.as_view()),
     path('tag/<slug:tag>/', NewsFilterByTag),
     path('category/', CategoryApiView.as_view()),
-    path('category/<int:pk>/', SingleCategoryApiView.as_view()),
+    path('category/<slug:slug>/', SingleCategoryApiView.as_view()),
 
 ]

@@ -68,7 +68,8 @@ class SingleCategoryApiView(RetrieveAPIView):
     serializer_class = CategorySerializer
     queryset = serializer_class.Meta.model.objects.all()
     permission_classes = [AllowAny]
-    # lookup_field = 'slug'
+    lookup_field = 'slug'
+    lookup_url_kwarg = 'slug'
 
 
 @api_view(['GET'])
@@ -77,7 +78,13 @@ def NewsFilterByTag(request, tag):
         news_list = News.objects.filter(
             tags__name__in=[tag], is_published=True).order_by('-id')
         serializer = NewsSerializer(news_list, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
+        data = {
+            'news': serializer.data,
+            'tag': [tag],
+
+        }
+        return Response(data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
