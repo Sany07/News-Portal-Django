@@ -34,7 +34,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     def get_news(self, obj):
         news_list = News.objects.filter(
-            category=obj.id, is_published=True).order_by('-id').values('title', 'slug', 'description', 'timestamp', 'author', 'thumbnail')
+            category=obj.id, is_published=True).order_by('-id').values('title', 'slug', 'description', 'timestamp', 'author', 'thumbnail', 'thumbnail_url')
         return news_list
 
 
@@ -70,4 +70,4 @@ class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
         fields = "__all__"
 
     def get_related_post(self, obj):
-        return self.Meta.model.objects.filter(is_published='True', category=obj.category.id).exclude(id=obj.id).order_by('-id').values('id', 'title', 'thumbnail')
+        return self.Meta.model.objects.filter(is_published='True', category=obj.category.id).exclude(id=obj.id).order_by('-id').values('id', 'title', 'thumbnail', 'thumbnail_url')

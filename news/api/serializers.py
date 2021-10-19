@@ -43,7 +43,7 @@ class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
         fields = "__all__"
 
     def get_related_post(self, obj):
-        return self.Meta.model.objects.filter(is_published='True', category=obj.category.id).exclude(id=obj.id).order_by('-id').values('id','slug','timestamp','author','thumbnail', 'title')
+        return self.Meta.model.objects.filter(is_published='True', category=obj.category.id).exclude(id=obj.id).order_by('-id').values('id', 'slug', 'timestamp', 'thumbnail_url', 'author', 'thumbnail', 'title')
 
     def get_total_comment_count(self, obj):
         comment_count = obj.post.aggregate(Count('post__id'))
