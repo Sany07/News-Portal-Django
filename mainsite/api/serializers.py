@@ -42,6 +42,7 @@ class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
     author = AuthorDetailSerializer(read_only=True)
     category = CategorySerializer(read_only=True)
     tags = TagListSerializerField()
+    # comments = CommentSerializer()
     total_comment_count = serializers.SerializerMethodField()
     # custom_field = serializers.SerializerMethodField()
 
