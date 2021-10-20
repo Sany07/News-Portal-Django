@@ -34,7 +34,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     def get_news(self, obj):
         news_list = News.objects.filter(
-            category=obj.id, is_published=True).order_by('-id').values('title', 'slug', 'description', 'timestamp', 'author', 'thumbnail', 'thumbnail_url')
+            category=obj.id, is_published=True).order_by('-id').values('title', 'slug', 'description', 'timestamp', 'author', 'author__user__username', 'thumbnail', 'thumbnail_url')
         return news_list
 
 
