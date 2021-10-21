@@ -29,7 +29,7 @@
                 <div class="entity_wrapper" style="margin-left:17px">
                     <div class="entity_thumb">
                         <img class="img-responsive" style="width: 775px; max-height:450px;"
-                            src="{{ news.thumbnail.url }}" alt="feature-top">
+                            src="{% if news.thumbnail_url %}  {{ news.thumbnail_url }} {% else %}{{ news.thumbnail.url }}{% endif %}" alt="feature-top">
                     </div>
                     <!-- entity_thumb -->
 
@@ -62,7 +62,7 @@
                 <div class="col-md-6">
                     <div class="category_article_body  mb-5">
                         <div class="top_article_img">
-                            <img class="img-fluid" style="width: 360px; height:250px;" src="{{ news.thumbnail.url }}"
+                            <img class="img-fluid" style="width: 360px; height:250px;" src="{% if news.thumbnail_url %}  {{ news.thumbnail_url }} {% else %}{{ news.thumbnail.url }}{% endif %}"
                                 alt="feature-top">
                         </div>
                         <!-- top_article_img -->

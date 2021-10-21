@@ -4,7 +4,7 @@
     <div class="feature_article_wrapper">
         <div class="feature_article_img">
             <img class="img-responsive top_static_article_img"
-                src="{% static 'assets/img/feature-top.jpg' %}" alt="feature-top">
+                src="{% if hot_news.thumbnail_url %}  {{ hot_news.thumbnail_url }} {% else %}{{ hot_news.thumbnail.url }}{% endif %}" alt="feature-top">
         </div>
         <!-- feature_article_img -->
 
