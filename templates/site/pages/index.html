@@ -40,7 +40,7 @@
                                 <div class="top_article_img">
                                     <a href="{{ post_catalog_one.get_absolute_url }}" target="_self">
                                         <img class="img-responsive" style="width: 295px; height: 199px;"
-                                            src="{{ post_catalog_one.thumbnail.url }}" alt="feature-top">
+                                            src="{% if post_catalog_one.thumbnail_url %}  {{ post_catalog_one.thumbnail_url }} {% else %}{{ post_catalog_one.thumbnail.url }} {% endif %}" alt="feature-top">
                                     </a>
                                 </div>
                                 <!-- top_article_img -->
@@ -108,7 +108,7 @@
                                     <div class="top_article_img">
                                         <a href="{{ post_catalog_two.get_absolute_url }}" target="_self">
                                             <img class="img-responsive" style="width: 360px; height:274px;"
-                                                src="{{ post_catalog_two.thumbnail.url }}" alt="feature-top">
+                                                src="{% if post_catalog_two.thumbnail_url %} {{ post_catalog_two.thumbnail_url }} {% else %} {{ post_catalog_two.thumbnail.url }}{% endif %}" alt="feature-top">
                                         </a>
                                     </div>
                                     <!-- top_article_img -->
@@ -179,7 +179,7 @@
                                         <div class="top_article_img">
                                             <a href="{{ post_catalog_three.get_absolute_url }}" target="_self">
                                                 <img class="img-responsive" style="width: 360px; height:274px;"
-                                                    src="{{ post_catalog_three.thumbnail.url }}" alt="feature-top">
+                                                    src="{% if post_catalog_three.thumbnail_url %} {{ post_catalog_three.thumbnail_url }} {% else %}{{ post_catalog_three.thumbnail.url }}{% endif %}" alt="feature-top">
                                             </a>
                                         </div>
                                         <!-- top_article_img -->
@@ -249,7 +249,7 @@
                             <div class="col-md-5">
                                 <div class="top_article_img">
                                     <a href="{{ post_catalog_four.category.get_absolute_url }}" target="_self">
-                                        <img class="img-responsive" src="{{ post_catalog_four.thumbnail.url }}"
+                                        <img class="img-responsive" src="{% if post_catalog_four.thumbnail_url %} {{ post_catalog_four.thumbnail_url }} {% else %} {{ post_catalog_four.thumbnail.url }}{% endif %}"
                                             alt="feature-top">
                                     </a>
                                 </div>
@@ -316,7 +316,7 @@
                                     <div class="top_article_img">
                                         <a href="{{ post_catalog_five.get_absolute_url }}" target="_self">
                                             <img class="img-responsive" style="width: 360px; height:274px;"
-                                                src="{{ post_catalog_five.thumbnail.url }}" alt="feature-top">
+                                                src="{% if post_catalog_five.thumbnail_url %} {{ post_catalog_five.thumbnail_url }} {% else %}{{ post_catalog_five.thumbnail.url }} {% endif %}" alt="feature-top">
                                         </a>
                                     </div>
                                     <!-- top_article_img -->

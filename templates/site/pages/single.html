@@ -44,7 +44,7 @@
 
                     <div class="entity_thumb">
                         <img class="img-responsive" style="width: 775px; max-height:450px;"
-                            src="{{ news.thumbnail.url }}" alt="feature-top">
+                            src="{% if news.thumbnail_url %}  {{ news.thumbnail_url }} {% else %}{{ news.thumbnail.url }}{% endif %}" alt="feature-top">
                     </div>
                     <!-- entity_thumb -->
 
@@ -52,39 +52,6 @@
                         <p>
                             {{ news.description }}
                         </p>
-                        <!-- 
-                        <p>
-                            Nor again is there anyone who loves or pursues or desires to obtain pain of itself,
-                            because it is pain, but because occasionally circumstances occur in which toil and pain
-                            can procure him some great pleasure. To take a trivial example, which of us ever
-                            undertakes laborious physical exercise, except to obtain some advantage from it?
-                        </p>
-
-                        <blockquote class="pull-left">But I must explain to you how all this mistaken idea of denouncing
-                            pleasure
-                        </blockquote>
-                        <p> But who has any right to find fault with a man who chooses to enjoy a pleasure that has
-                            no annoying consequences, or one who avoids a pain that produces no resultant pleasure?
-                            On the other hand, we denounce with righteous indignation and dislike men who are so
-                            beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire,
-                            that they cannot foresee.Nor again is there anyone who loves or pursues or desires to
-                            obtain pain of itself, because it is pain, but because occasionally circumstances occur
-                            in which toil and pain can procure him some great pleasure. To take a trivial example,
-                            which of us ever undertakes laborious physical exercise, except to obtain some advantage
-                            from it? Nor again is there anyone who loves or pursues or desires to obtain pain of
-                            itself, because it is pain, but because occasionally circumstances occur in which toil
-                            and pain can procure him some great pleasure. To take a trivial example, which of us
-                            ever
-                        </p>
-
-                        <p>
-                            But I must explain to you how all this mistaken idea of denouncing pleasure and praising
-                            pain was born and I will give you a complete account of the system, and expound the
-                            actual teachings of the great explorer of the truth, the master-builder of human
-                            happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure,
-                            but because those who do not know how to pursue pleasure rationally encounter
-                            consequences that are extremely painful.
-                        </p> -->
                     </div>
                     <!-- entity_content -->
 
@@ -124,17 +91,17 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="#"><img class="media-object" style="width: 122px; height: 122px;"
-                                                src="{{ post.thumbnail.url }}"
+                                                src="{% if post.thumbnail_url %}  {{ post.thumbnail_url }} {% else %}{{ post.thumbnail.url }}"
                                                 alt="Generic placeholder image"></a>
                                     </div>
                                     <div class="media-body">
                                         <span class="tag purple"><a href="category.html"
                                                 target="_self">{{ post.category }}</a></span>
 
-                                        <h3 class="media-heading"><a href="{{ related_post.get_absolute_url }}"
+                                        <h3 class="media-heading"><a href="{{ post.get_absolute_url }}"
                                                 target="_self">{{ post.title }}</a></h3>
                                         <span class="media-date">{{ post.timestamp|date:"j M Y" }}, by: <a
-                                                href="#">{{ news.author|title }}</a></span>
+                                                href="#">{{ post.author|title }}</a></span>
 
                                         <div class="media_social">
                                             <span><a href="#"><i class="fa fa-share-alt"></i>424</a> Shares</span>
