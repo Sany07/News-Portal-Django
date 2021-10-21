@@ -91,11 +91,11 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="#"><img class="media-object" style="width: 122px; height: 122px;"
-                                                src="{% if post.thumbnail_url %}  {{ post.thumbnail_url }} {% else %}{{ post.thumbnail.url }}"
+                                                src="{% if post.thumbnail_url %}  {{ post.thumbnail_url }} {% else %}{{ post.thumbnail.url }}{% endif %}"
                                                 alt="Generic placeholder image"></a>
                                     </div>
                                     <div class="media-body">
-                                        <span class="tag purple"><a href="category.html"
+                                        <span class="tag purple"><a href="{{ post.category.get_absolute_url }}"
                                                 target="_self">{{ post.category }}</a></span>
 
                                         <h3 class="media-heading"><a href="{{ post.get_absolute_url }}"

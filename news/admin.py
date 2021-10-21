@@ -4,5 +4,11 @@ from .models import *
 
 
 admin.site.register(Category)
-admin.site.register(News)
+
+
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'is_published')
+
+
+admin.site.register(News, NewsAdmin)
 admin.site.register(Author)

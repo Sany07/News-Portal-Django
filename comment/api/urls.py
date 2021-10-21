@@ -1,11 +1,10 @@
 
 from django.urls import path, include
-from .views import CommentList, CommentDetail, CommentFilterByNews
+from .views import CommentList, CommentsFilterByNews
 
 
 urlpatterns = [
     path('comments/', CommentList.as_view()),
-    path('comments/<int:pk>/', CommentDetail.as_view()),
-    path('cc/<int:pk>/', CommentFilterByNews.as_view()),
+    path('comments/<int:id>/', CommentsFilterByNews.as_view()),
 
 ]

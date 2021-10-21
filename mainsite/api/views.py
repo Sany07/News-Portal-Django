@@ -3,7 +3,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-from rest_framework import status
+from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.db.models import Count
@@ -85,7 +85,7 @@ def NewsFilterByTag(request, tag):
 
         }
         return Response(data, status=status.HTTP_200_OK)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PopularMostCommentedNewsApiView(APIView):

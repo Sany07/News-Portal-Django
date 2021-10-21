@@ -24,20 +24,17 @@ from drf_yasg import openapi
 
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Snippets API",
-      default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="Snippets API",
+        default_version='v1',
+        description="Test description",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@snippets.local"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
-
-
-
 
 
 urlpatterns = [
@@ -46,17 +43,17 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('subscribe/', include('subscription.urls')),
     path('admin/', admin.site.urls),
-    path('api/',include(
-            [
-                
-                path('', include('mainsite.api.urls')),
-                path('', include('comment.api.urls')),
-                path('', include('news.api.urls')),
-                path('', include('subscription.api.urls')),
-                path('account/', include('account.api.urls')),
-                path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
-            ]
-        )
+    path('api/', include(
+        [
+
+            path('', include('mainsite.api.urls')),
+            path('', include('comment.api.urls')),
+            path('', include('news.api.urls')),
+            path('', include('subscription.api.urls')),
+            path('account/', include('account.api.urls')),
+            path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
+        ]
+    )
     ),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
