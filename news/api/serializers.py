@@ -15,7 +15,6 @@ class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     tags = TagListSerializerField()
     total_comment_count = serializers.SerializerMethodField()
-    # custom_field = serializers.SerializerMethodField()
 
     class Meta:
         model = News
@@ -24,11 +23,6 @@ class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
     def get_total_comment_count(self, obj):
         comment_count = obj.post.aggregate(Count('post__id'))
         return comment_count['post__id__count']
-
-    # def get_custom_field(self, obj):
-    #     foo = self.context.get('foo')
-    #     print(self.context.get('foo'))
-    #     return "custom data"
 
 
 class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
@@ -47,5 +41,4 @@ class NewsDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     def get_total_comment_count(self, obj):
         comment_count = obj.post.aggregate(Count('post__id'))
-
         return comment_count['post__id__count']

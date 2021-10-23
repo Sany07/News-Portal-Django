@@ -9,16 +9,24 @@ from news.models import News
 
 User = get_user_model()
 
-
-class CommentSerializer(serializers.ModelSerializer):
+class CommentChildSerializer(serializers.ModelSerializer):
     user = UserDetailSerializer(read_only=True)
-    # comments = NewsSerializer(many=True)
 
     class Meta:
         model = Comment
         fields = "__all__"
 
-    # def get_comments(self, obj):
-    #     news_list = News.objects.filter(
-    #         category=obj.id, is_published=True).order_by('-id').values('title', 'slug', 'description', 'timestamp', 'author', 'author__user__username', 'thumbnail', 'thumbnail_url')
-    #     return news_list
+class CommentSerializer(serializers.ModelSerializer):
+    user = UserDetailSerializer(read_only=True)
+    replies =serializers.SerializerMethodField()
+
+    class Meta:
+        model = Comment
+        exclude = ["reply"]
+
+    def get_replies(self, obj):
+        if obj.id:
+            replies = self.Meta.model.objects.filter(reply=obj.id)
+            return CommentChildSerializer(replies , many=True).data
+        return None
+        
