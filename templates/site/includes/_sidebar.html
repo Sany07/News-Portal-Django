@@ -8,7 +8,7 @@
         {% for news in popular_news %}
         <div class="media">
             <div class="media-left">
-                <a href="#"><img class="media-object" style="width: 100px; height:100px;" src="{{ news.thumbnail.url }}"
+                <a href="#"><img class="media-object" style="width: 100px; height:100px;" src="{% if news.thumbnail_url %}  {{ news.thumbnail_url }} {% else %}{{ news.thumbnail.url }}{% endif %}"
                         alt="Generic placeholder image"></a>
             </div>
             <div class="media-body">
@@ -136,10 +136,11 @@
         <div class="widget_title widget_black">
             <h2><a href="#">Most Commented</a></h2>
         </div>
+        
         {% for post in most_commented %}
         <div class="media">
             <div class="media-left">
-                <a href="#"><img class="media-object" style="width: 100px; height:100px;" src="{{ post.thumbnail.url }}"
+                <a href="#"><img class="media-object" style="width: 100px; height:100px;" src="{% if post.thumbnail_url %}  {{ post.thumbnail_url }} {% else %}{{ post.thumbnail.url }}{% endif %}"
                         alt="Generic placeholder image"></a>
             </div>
             <div class="media-body">
