@@ -46,7 +46,7 @@ class News(models.Model):
     title = models.CharField(max_length=250, blank=False)
     slug = models.SlugField(unique=True, null=True, blank=True, max_length=255)
     description = models.TextField()
-    thumbnail = models.ImageField(upload_to='photos/news/%Y-%m-%d/')
+    thumbnail = models.ImageField(upload_to='photos/news/%Y-%m-%d/', blank=True, null=True)
     thumbnail_url = models.URLField(max_length=300, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     # ratings = GenericRelation(Rating, related_query_name='ratings')
