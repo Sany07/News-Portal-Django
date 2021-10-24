@@ -7,7 +7,7 @@ admin.site.register(Category)
 
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'is_published')
+    list_display = ('title','category', 'is_published')
 
 
 admin.site.register(News, NewsAdmin)
