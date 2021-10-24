@@ -1,4 +1,6 @@
-{% extends 'site/base.html' %} {% load static %} {% block content %}
+{% extends 'site/base.html' %}
+{% load static %}
+{% block content %}
 
 <section id="feature_news_section" class="feature_news_section">
     <div class="container">
@@ -6,12 +8,15 @@
             {% include 'site/includes/_hot_news_index.html' %}
             <!-- col-md-7 -->
 
+
             <!-- col-md-5 -->
             {% include 'site/includes/_top_page_index.html' %}
         </div>
         <!-- Row -->
+
     </div>
     <!-- container -->
+
 </section>
 <!-- Feature News Section -->
 
@@ -21,16 +26,11 @@
             <div class="col-md-8">
                 <div class="category_section camera">
                     <!-- article_title -->
-                    {% for post_catalog_one in post_catalog_one %} {% if
-                    forloop.first %}
+                    {% for post_catalog_one in post_catalog_one %}
+                    {% if forloop.first %}
                     <div class="article_title header_orange">
-                        <h2>
-                            <a
-                                href="{{ post_catalog_one.category.get_absolute_url }}"
-                                target="_self"
-                            >
-                                {{ post_catalog_one.category }}</a
-                            >
+                        <h2><a href="{{ post_catalog_one.category.get_absolute_url }}" target="_self">
+                                {{ post_catalog_one.category }}</a>
                         </h2>
                     </div>
                     {% endif %}
@@ -38,80 +38,44 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="top_article_img">
-                                    <a
-                                        href="{{ post_catalog_one.get_absolute_url }}"
-                                        target="_self"
-                                    >
-                                        <img
-                                            class="img-responsive"
-                                            style="width: 295px; height: 199px"
-                                            src="{% if post_catalog_one.thumbnail_url %}  {{ post_catalog_one.thumbnail_url }} {% else %}{{ post_catalog_one.thumbnail.url }} {% endif %}"
-                                            alt="feature-top"
-                                        />
+                                    <a href="{{ post_catalog_one.get_absolute_url }}" target="_self">
+                                        <img class="img-responsive" style="width: 295px; height: 199px;"
+                                            src="{% if post_catalog_one.thumbnail_url %}  {{ post_catalog_one.thumbnail_url }} {% else %}{{ post_catalog_one.thumbnail.url }} {% endif %}" alt="feature-top">
                                     </a>
                                 </div>
                                 <!-- top_article_img -->
                             </div>
                             <div class="col-md-7">
                                 {% for tag in post_catalog_one.tags.all %}
-                                <span
-                                    class="tag orange"
-                                    style="margin-left: 1px"
-                                >
-                                    <a
-                                        href="{% url 'newspaper:tag' tag %}"
-                                        target="_self"
-                                    >
-                                        {{ tag }}
-                                    </a>
-                                </span>
+                                    <span class="tag orange" style="margin-left: 1px;">
+                                        <a href="{% url 'newspaper:tag' tag %}" target="_self">
+                                            {{ tag }}
+                                        </a>
+                                    </span>
                                 {% endfor %}
 
                                 <div class="category_article_title">
-                                    <h2>
-                                        <a
-                                            href="{{ post_catalog_one.get_absolute_url }}"
-                                            target="_self"
-                                        >
+                                    <h2><a href="{{ post_catalog_one.get_absolute_url }}" target="_self">
                                             {{ post_catalog_one.title }}
-                                        </a>
-                                    </h2>
+                                        </a></h2>
                                 </div>
                                 <!-- category_article_title -->
 
-                                <div class="article_date">
-                                    <a href="#"
-                                        >{{ post_catalog_one.timestamp|date:"j M
-                                        Y" }}</a
-                                    >, by:
-                                    <a href="#">
-                                        {{ post_catalog_one.author|title }}</a
-                                    >
+                                <div class="article_date"><a href="#">{{ post_catalog_one.timestamp|date:"j M Y" }}</a>,
+                                    by: <a href="#"> {{ post_catalog_one.author|title }}</a>
                                 </div>
                                 <!----article_date------>
                                 <!-- category_article_wrapper -->
                                 <div class="category_article_content">
-                                    {{
-                                    post_catalog_one.description|truncatechars:100
-                                    }}.
+                                    {{ post_catalog_one.description|truncatechars:100 }}.
                                 </div>
                                 <!-- category_article_content -->
                                 <div class="media_social">
-                                    <span
-                                        ><a href="#"
-                                            ><i class="fa fa-share-alt"></i>424
-                                        </a>
-                                        Shares</span
-                                    >
-                                    <span
-                                        ><i class="fa fa-comments-o"></i
-                                        ><a href="#">
-                                            {{
-                                            post_catalog_one.get_comment_count
-                                            }}</a
-                                        >
-                                        Comments</span
-                                    >
+                                    <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
+                                        Shares</span>
+                                    <span><i class="fa fa-comments-o"></i><a href="#">
+                                            {{ post_catalog_one.get_comment_count }}</a>
+                                        Comments</span>
                                 </div>
                                 <!-- media_social -->
                             </div>
@@ -120,120 +84,67 @@
                         <!-- row -->
                     </div>
                     {% if forloop.last %}
-                    <p class="divider">
-                        <a
-                            href="{{ post_catalog_one.category.get_absolute_url }}"
-                            >More News&nbsp;&raquo;</a
-                        >
-                    </p>
-                    {% endif %} {% endfor %}
+                    <p class="divider"><a href="{{ post_catalog_one.category.get_absolute_url }}">More
+                            News&nbsp;&raquo;</a></p>
+                    {% endif %}
+                    {% endfor %}
                 </div>
                 <!-- Mobile News Section -->
 
                 <div class="category_section tablet">
                     <!-- Mobile News Section -->
-                    {% for post_catalog_two in post_catalog_two %} {% if
-                    forloop.first %}
+                    {% for post_catalog_two in post_catalog_two %}
+                    {% if forloop.first %}
                     <div class="article_title header_pink">
-                        <h2>
-                            <a
-                                href="{{ post_catalog_two.category.get_absolute_url }}"
-                                target="_self"
-                            >
+                        <h2><a href="{{ post_catalog_two.category.get_absolute_url }}" target="_self">
                                 {{ post_catalog_two.category }}
-                            </a>
-                        </h2>
+                            </a></h2>
                     </div>
                     {% endif %}
                     <div class="">
                         <div class="">
-                            <div
-                                class="col-md-6"
-                                style="margin-bottom: 45px; padding: 0px"
-                            >
+                            <div class="col-md-6" style="margin-bottom: 45px; padding: 0px;">
                                 <div class="category_article_body">
                                     <div class="top_article_img">
-                                        <a
-                                            href="{{ post_catalog_two.get_absolute_url }}"
-                                            target="_self"
-                                        >
-                                            <img
-                                                class="img-responsive"
-                                                style="
-                                                    width: 360px;
-                                                    height: 274px;
-                                                "
-                                                src="{% if post_catalog_two.thumbnail_url %} {{ post_catalog_two.thumbnail_url }} {% else %} {{ post_catalog_two.thumbnail.url }}{% endif %}"
-                                                alt="feature-top"
-                                            />
+                                        <a href="{{ post_catalog_two.get_absolute_url }}" target="_self">
+                                            <img class="img-responsive" style="width: 360px; height:274px;"
+                                                src="{% if post_catalog_two.thumbnail_url %} {{ post_catalog_two.thumbnail_url }} {% else %} {{ post_catalog_two.thumbnail.url }}{% endif %}" alt="feature-top">
                                         </a>
                                     </div>
                                     <!-- top_article_img -->
 
                                     {% for tag in post_catalog_two.tags.all %}
-                                    <span
-                                        class="tag pink"
-                                        style="margin-right: 1px"
-                                    >
-                                        <a
-                                            href="{% url 'newspaper:tag' tag %}"
-                                            target="_self"
-                                        >
-                                            {{ tag }}
-                                        </a>
-                                    </span>
+                                        <span class="tag pink" style="margin-right: 1px;">
+                                            <a href="{% url 'newspaper:tag' tag %}" target="_self">
+                                                {{ tag }}
+                                            </a>
+                                        </span>
                                     {% endfor %}
 
                                     <div class="category_article_title">
-                                        <h2>
-                                            <a
-                                                href="{{ post_catalog_two.get_absolute_url }}"
-                                                target="_self"
-                                            >
-                                                {{ post_catalog_two.title }}
-                                            </a>
-                                        </h2>
+                                        <h2><a href="{{ post_catalog_two.get_absolute_url }}" target="_self">
+                                            {{ post_catalog_two.title }} </a></h2>
                                     </div>
                                     <!-- category_article_title -->
 
-                                    <div class="category_article_date">
-                                        <a href="#">
-                                            {{
-                                            post_catalog_two.timestamp|date:"j M
-                                            Y" }}</a
-                                        >, by:
-                                        <a href="#"
-                                            >{{ post_catalog_two.author|title
-                                            }}</a
-                                        >
+                                    <div class="category_article_date"><a href="#">
+                                        {{ post_catalog_two.timestamp|date:"j M Y" }}</a>, by:
+                                        <a href="#">{{ post_catalog_two.author|title }}</a>
                                     </div>
                                     <!----category_article_date------>
                                     <!-- category_article_date -->
 
                                     <div class="category_article_content">
-                                        {{
-                                        post_catalog_two.description|truncatechars:100
-                                        }}.
+                                        {{ post_catalog_two.description|truncatechars:100 }}.
                                     </div>
                                     <!-- category_article_content -->
 
                                     <div class="media_social">
-                                        <span
-                                            ><a href="#"
-                                                ><i class="fa fa-share-alt"></i
-                                                >424
-                                            </a>
-                                            Shares</span
-                                        >
-                                        <span
-                                            ><i class="fa fa-comments-o"></i
-                                            ><a href="#">
-                                                {{
-                                                post_catalog_two.get_comment_count
-                                                }}</a
-                                            >
-                                            Comments</span
-                                        >
+                                        <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
+                                            Shares</span>
+                                        <span><i class="fa fa-comments-o"></i><a href="#">
+                                            {{ post_catalog_two.get_comment_count }}</a>
+                                            Comments</span>
                                     </div>
                                     <!-- media_social -->
                                 </div>
@@ -244,126 +155,66 @@
                         <!-- row -->
                     </div>
                     {% if forloop.last %}
-                    <p class="divider">
-                        <a
-                            href="{{ post_catalog_two.category.get_absolute_url }}"
-                            >More News&nbsp;&raquo;</a
-                        >
-                    </p>
-                    {% endif %} {% endfor %}
+                    <p class="divider"><a href="{{ post_catalog_two.category.get_absolute_url }}">More
+                            News&nbsp;&raquo;</a></p>
+                    {% endif %}
+                    {% endfor %}
                     <!-- category_article_wrapper -->
                 </div>
                 <!-- Tablet News Section -->
 
                 <div class="category_section gadget">
                     <div class="category_article_wrapper">
-                        {% for post_catalog_three in post_catalog_three %} {% if
-                        forloop.first %}
+                        {% for post_catalog_three in post_catalog_three %}
+                        {% if forloop.first %}
                         <div class="article_title header_blue">
-                            <h2>
-                                <a
-                                    href="{{ post_catalog_five.category.get_absolute_url }}"
-                                    target="_self"
-                                >
-                                    {{ post_catalog_three.category }}</a
-                                >
-                            </h2>
+                            <h2><a href="{{ post_catalog_five.category.get_absolute_url }}" target="_self">
+                                {{ post_catalog_three.category }}</a></h2>
                         </div>
                         {% endif %}
                         <div class="">
                             <div class="">
-                                <div
-                                    class="col-md-6"
-                                    style="margin-bottom: 45px; padding: 0px"
-                                >
+                                <div class="col-md-6" style="margin-bottom: 45px; padding: 0px;">
                                     <div class="category_article_body">
                                         <div class="top_article_img">
-                                            <a
-                                                href="{{ post_catalog_three.get_absolute_url }}"
-                                                target="_self"
-                                            >
-                                                <img
-                                                    class="img-responsive"
-                                                    style="
-                                                        width: 360px;
-                                                        height: 274px;
-                                                    "
-                                                    src="{% if post_catalog_three.thumbnail_url %} {{ post_catalog_three.thumbnail_url }} {% else %}{{ post_catalog_three.thumbnail.url }}{% endif %}"
-                                                    alt="feature-top"
-                                                />
+                                            <a href="{{ post_catalog_three.get_absolute_url }}" target="_self">
+                                                <img class="img-responsive" style="width: 360px; height:274px;"
+                                                    src="{% if post_catalog_three.thumbnail_url %} {{ post_catalog_three.thumbnail_url }} {% else %}{{ post_catalog_three.thumbnail.url }}{% endif %}" alt="feature-top">
                                             </a>
                                         </div>
                                         <!-- top_article_img -->
-
-                                        {% for tag in
-                                        post_catalog_three.tags.all %}
-                                        <span
-                                            class="tag blue"
-                                            style="margin-right: 1px"
-                                        >
-                                            <a
-                                                href="{% url 'newspaper:tag' tag %}"
-                                                target="_self"
-                                            >
-                                                {{ tag }}</a
-                                            >
-                                        </span>
+    
+                                        {% for tag in post_catalog_three.tags.all %}
+                                            <span class="tag blue" style="margin-right: 1px;">
+                                                <a href="{% url 'newspaper:tag' tag %}" target="_self">
+                                                {{ tag }}</a>
+                                            </span>
                                         {% endfor %}
-
+    
                                         <div class="category_article_title">
-                                            <h2>
-                                                <a
-                                                    href="{{ post_catalog_three.get_absolute_url }}"
-                                                    target="_self"
-                                                >
-                                                    {{ post_catalog_three.title
-                                                    }}
-                                                </a>
-                                            </h2>
+                                            <h2><a href="{{ post_catalog_three.get_absolute_url }}" target="_self">
+                                                {{ post_catalog_three.title }} </a></h2>
                                         </div>
                                         <!-- category_article_title -->
-
-                                        <div class="category_article_date">
-                                            <a href="#">
-                                                {{
-                                                post_catalog_three.timestamp|date:"j
-                                                M Y" }}</a
-                                            >, by:
-                                            <a href="#"
-                                                >{{
-                                                post_catalog_three.author|title
-                                                }}</a
-                                            >
+    
+                                        <div class="category_article_date"><a href="#">
+                                            {{ post_catalog_three.timestamp|date:"j M Y" }}</a>, by:
+                                            <a href="#">{{ post_catalog_three.author|title }}</a>
                                         </div>
                                         <!----category_article_date------>
                                         <!-- category_article_date -->
-
+    
                                         <div class="category_article_content">
-                                            {{
-                                            post_catalog_three.description|truncatechars:100
-                                            }}.
+                                            {{ post_catalog_three.description|truncatechars:100 }}.
                                         </div>
                                         <!-- category_article_content -->
-
+    
                                         <div class="media_social">
-                                            <span
-                                                ><a href="#"
-                                                    ><i
-                                                        class="fa fa-share-alt"
-                                                    ></i
-                                                    >424
-                                                </a>
-                                                Shares</span
-                                            >
-                                            <span
-                                                ><i class="fa fa-comments-o"></i
-                                                ><a href="#">
-                                                    {{
-                                                    post_catalog_three.get_comment_count
-                                                    }}</a
-                                                >
-                                                Comments</span
-                                            >
+                                            <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
+                                                Shares</span>
+                                            <span><i class="fa fa-comments-o"></i><a href="#">
+                                                {{ post_catalog_three.get_comment_count }}</a>
+                                                Comments</span>
                                         </div>
                                         <!-- media_social -->
                                     </div>
@@ -374,108 +225,65 @@
                             <!-- row -->
                         </div>
                         {% if forloop.last %}
-                        <p class="divider">
-                            <a
-                                href="{{ post_catalog_three.category.get_absolute_url }}"
-                                >More News&nbsp;&raquo;</a
-                            >
-                        </p>
-                        {% endif %} {% endfor %}
+                        <p class="divider"><a href="{{ post_catalog_three.category.get_absolute_url }}">More
+                                News&nbsp;&raquo;</a></p>
+                        {% endif %}
+                        {% endfor %}
                         <!-- row -->
                     </div>
                 </div>
                 <!-- Gadget News Section -->
 
                 <div class="category_section camera">
+
                     <!-- article_title -->
-                    {% for post_catalog_four in post_catalog_four %} {% if
-                    forloop.first %}
+                    {% for post_catalog_four in post_catalog_four %}
+                    {% if forloop.first %}
                     <div class="article_title header_orange">
-                        <h2>
-                            <a
-                                href="{{ post_catalog_four.category.get_absolute_url }}"
-                                target="_self"
-                            >
-                                {{ post_catalog_four.category }}</a
-                            >
-                        </h2>
+                        <h2><a href="{{ post_catalog_four.category.get_absolute_url }}" target="_self">
+                                {{ post_catalog_four.category }}</a></h2>
                     </div>
                     {% endif %}
                     <div class="category_article_wrapper">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="top_article_img">
-                                    <a
-                                        href="{{ post_catalog_four.category.get_absolute_url }}"
-                                        target="_self"
-                                    >
-                                        <img
-                                            class="img-responsive"
-                                            src="{% if post_catalog_four.thumbnail_url %} {{ post_catalog_four.thumbnail_url }} {% else %} {{ post_catalog_four.thumbnail.url }}{% endif %}"
-                                            alt="feature-top"
-                                        />
+                                    <a href="{{ post_catalog_four.category.get_absolute_url }}" target="_self">
+                                        <img class="img-responsive" src="{% if post_catalog_four.thumbnail_url %} {{ post_catalog_four.thumbnail_url }} {% else %} {{ post_catalog_four.thumbnail.url }}{% endif %}"
+                                            alt="feature-top">
                                     </a>
                                 </div>
                                 <!-- top_article_img -->
+
                             </div>
                             <div class="col-md-7">
                                 {% for tag in post_catalog_four.tags.all %}
-                                <span
-                                    class="tag orange"
-                                    style="margin-right: 1px"
-                                >
-                                    <a
-                                        href="{% url 'newspaper:tag' tag %}"
-                                        target="_self"
-                                    >
-                                        {{ tag }}</a
-                                    >
-                                </span>
+                                    <span class="tag orange" style="margin-right: 1px;">
+                                        <a href="{% url 'newspaper:tag' tag %}" target="_self">
+                                        {{ tag }}</a>
+                                    </span>
                                 {% endfor %}
                                 <div class="category_article_title">
-                                    <h2>
-                                        <a
-                                            href="{{ post_catalog_four.get_absolute_url }}"
-                                            target="_self"
-                                        >
-                                            {{ post_catalog_four.title }}
-                                        </a>
-                                    </h2>
+                                    <h2><a href="{{ post_catalog_four.get_absolute_url }}" target="_self">
+                                            {{ post_catalog_four.title }} </a></h2>
                                 </div>
                                 <!-- category_article_title -->
-                                <div class="article_date">
-                                    <a href="#">
-                                        {{ post_catalog_four.timestamp|date:"j M
-                                        Y" }} </a
-                                    >, by:
-                                    <a href="#"
-                                        >{{ post_catalog_four.author|title }}</a
-                                    >
+                                <div class="article_date"><a href="#">
+                                        {{ post_catalog_four.timestamp|date:"j M Y" }}
+                                    </a>, by: <a href="#">{{ post_catalog_four.author|title }}</a>
                                 </div>
                                 <!----article_date------>
                                 <!-- category_article_wrapper -->
                                 <div class="category_article_content">
-                                    {{
-                                    post_catalog_four.description|truncatechars:100
-                                    }}.
+                                    {{ post_catalog_four.description|truncatechars:100 }}.
                                 </div>
                                 <!-- category_article_content -->
                                 <div class="media_social">
-                                    <span
-                                        ><a href="#"
-                                            ><i class="fa fa-share-alt"></i>424
-                                        </a>
-                                        Shares</span
-                                    >
-                                    <span
-                                        ><i class="fa fa-comments-o"></i
-                                        ><a href="#">
-                                            {{
-                                            post_catalog_four.get_comment_count
-                                            }}</a
-                                        >
-                                        Comments</span
-                                    >
+                                    <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
+                                        Shares</span>
+                                    <span><i class="fa fa-comments-o"></i><a href="#">
+                                            {{ post_catalog_four.get_comment_count }}</a>
+                                        Comments</span>
                                 </div>
                                 <!-- media_social -->
                             </div>
@@ -484,115 +292,65 @@
                         <!-- row -->
                     </div>
                     {% if forloop.last %}
-                    <p class="divider">
-                        <a
-                            href="{{ post_catalog_four.category.get_absolute_url }}"
-                            >More News&nbsp;&raquo;</a
-                        >
-                    </p>
-                    {% endif %} {% endfor %}
+                    <p class="divider"><a href="{{ post_catalog_four.category.get_absolute_url }}">More
+                            News&nbsp;&raquo;</a></p>
+                    {% endif %}
+                    {% endfor %}
                     <!-- category_article_wrapper -->
                 </div>
                 <!-- Camera News Section -->
 
                 <div class="category_section design">
                     <!-- row -->
-                    {% for post_catalog_five in post_catalog_five %} {% if
-                    forloop.first %}
+                    {% for post_catalog_five in post_catalog_five %}
+                    {% if forloop.first %}
                     <div class="article_title header_blue">
-                        <h2>
-                            <a
-                                href="{{ post_catalog_five.category.get_absolute_url }}"
-                                target="_self"
-                            >
-                                {{ post_catalog_five.category }}</a
-                            >
-                        </h2>
+                        <h2><a href="{{ post_catalog_five.category.get_absolute_url }}" target="_self">
+                            {{ post_catalog_five.category }}</a></h2>
                     </div>
                     {% endif %}
                     <div class="">
                         <div class="">
-                            <div
-                                class="col-md-6"
-                                style="margin-bottom: 45px; padding: 0px"
-                            >
+                            <div class="col-md-6" style="margin-bottom: 45px; padding: 0px;">
                                 <div class="category_article_body">
                                     <div class="top_article_img">
-                                        <a
-                                            href="{{ post_catalog_five.get_absolute_url }}"
-                                            target="_self"
-                                        >
-                                            <img
-                                                class="img-responsive"
-                                                style="
-                                                    width: 360px;
-                                                    height: 274px;
-                                                "
-                                                src="{% if post_catalog_five.thumbnail_url %} {{ post_catalog_five.thumbnail_url }} {% else %}{{ post_catalog_five.thumbnail.url }} {% endif %}"
-                                                alt="feature-top"
-                                            />
+                                        <a href="{{ post_catalog_five.get_absolute_url }}" target="_self">
+                                            <img class="img-responsive" style="width: 360px; height:274px;"
+                                                src="{% if post_catalog_five.thumbnail_url %} {{ post_catalog_five.thumbnail_url }} {% else %}{{ post_catalog_five.thumbnail.url }} {% endif %}" alt="feature-top">
                                         </a>
                                     </div>
                                     <!-- top_article_img -->
 
                                     {% for tag in post_catalog_five.tags.all %}
-                                    <span
-                                        class="tag blue"
-                                        style="margin-right: 1px"
-                                    >
-                                        <a href="" target="_self"> {{ tag }}</a>
-                                    </span>
+                                    <span class="tag blue" style="margin-right: 1px;">
+                                        <a href="" target="_self">
+                                            {{ tag }}</a>
+                                        </span>
                                     {% endfor %}
                                     <div class="category_article_title">
-                                        <h2>
-                                            <a
-                                                href="{{ post_catalog_five.get_absolute_url }}"
-                                                target="_self"
-                                            >
-                                                {{ post_catalog_five.title }}
-                                            </a>
-                                        </h2>
+                                        <h2><a href="{{ post_catalog_five.get_absolute_url }}" target="_self">
+                                            {{ post_catalog_five.title }} </a></h2>
                                     </div>
                                     <!-- category_article_title -->
 
-                                    <div class="category_article_date">
-                                        <a href="#">
-                                            {{
-                                            post_catalog_five.timestamp|date:"j
-                                            M Y" }}</a
-                                        >, by:
-                                        <a href="#"
-                                            >{{ post_catalog_five.author|title
-                                            }}</a
-                                        >
+                                    <div class="category_article_date"><a href="#">
+                                        {{ post_catalog_five.timestamp|date:"j M Y" }}</a>, by:
+                                        <a href="#">{{ post_catalog_five.author|title }}</a>
                                     </div>
                                     <!----category_article_date------>
                                     <!-- category_article_date -->
 
                                     <div class="category_article_content">
-                                        {{
-                                        post_catalog_five.description|truncatechars:100
-                                        }}.
+                                        {{ post_catalog_five.description|truncatechars:100 }}.
                                     </div>
                                     <!-- category_article_content -->
 
                                     <div class="media_social">
-                                        <span
-                                            ><a href="#"
-                                                ><i class="fa fa-share-alt"></i
-                                                >424
-                                            </a>
-                                            Shares</span
-                                        >
-                                        <span
-                                            ><i class="fa fa-comments-o"></i
-                                            ><a href="#">
-                                                {{
-                                                post_catalog_five.get_comment_count
-                                                }}</a
-                                            >
-                                            Comments</span
-                                        >
+                                        <span><a href="#"><i class="fa fa-share-alt"></i>424 </a>
+                                            Shares</span>
+                                        <span><i class="fa fa-comments-o"></i><a href="#">
+                                            {{ post_catalog_five.get_comment_count }}</a>
+                                            Comments</span>
                                     </div>
                                     <!-- media_social -->
                                 </div>
@@ -603,13 +361,10 @@
                         <!-- row -->
                     </div>
                     {% if forloop.last %}
-                    <p class="divider">
-                        <a
-                            href="{{ post_catalog_five.category.get_absolute_url }}"
-                            >More News&nbsp;&raquo;</a
-                        >
-                    </p>
-                    {% endif %} {% endfor %}
+                    <p class="divider"><a href="{{ post_catalog_five.category.get_absolute_url }}">More
+                            News&nbsp;&raquo;</a></p>
+                    {% endif %}
+                    {% endfor %}
                     <!-- category_article_wrapper -->
                 </div>
                 <!-- Design News Section -->
@@ -618,14 +373,17 @@
 
             {% include 'site/includes/_sidebar.html' %}
             <!-- Right Section -->
+
         </div>
         <!-- Row -->
+
     </div>
     <!-- Container -->
+
 </section>
 <!-- Category News Section -->
-<!-- 
-<section id="video_section" class="video_section">
+
+{% comment %} <section id="video_section" class="video_section">
     <div class="container">
         <div class="well">
             <div class="row">
@@ -634,44 +392,45 @@
                         <iframe title="video-1" class="embed-responsive-item" src="https://www.youtube.com/embed/MJ-jbFdUPns"
                             frameborder="0" allowfullscreen></iframe>
                     </div>
-                   
+                    <!-- embed-responsive -->
 
                 </div>
-           
+                <!-- col-md-6 -->
 
                 <div class="col-md-3">
                     <div class="embed-responsive embed-responsive-4by3">
                         <iframe  title="video-2" class="embed-responsive-item" src="https://www.youtube.com/embed/h5Jni-vy_5M"></iframe>
                     </div>
-                  
+                    <!-- embed-responsive -->
 
                     <div class="embed-responsive embed-responsive-4by3 m16">
                         <iframe title="video-3"  class="embed-responsive-item" src="https://www.youtube.com/embed/wQ5Gj0UB_R8"></iframe>
                     </div>
-                  
+                    <!-- embed-responsive -->
 
                 </div>
-              
+                <!-- col-md-3 -->
 
                 <div class="col-md-3">
                     <div class="embed-responsive embed-responsive-4by3">
                         <iframe title="video-4"  class="embed-responsive-item" src="https://www.youtube.com/embed/UPvJXBI_3V4"></iframe>
                     </div>
-                
+                    <!-- embed-responsive -->
 
                     <div class="embed-responsive embed-responsive-4by3 m16">
                         <iframe  title="video-5"  class="embed-responsive-item" src="https://www.youtube.com/embed/DTCtj5Wz6BM"></iframe>
                     </div>
-               
+                    <!-- embed-responsive -->
                 </div>
-           
+                <!-- col-md-3 -->
             </div>
-     
+            <!-- row -->
         </div>
- 
+        <!-- well -->
     </div>
-  
+    <!-- Container -->
 
-</section> -->
+</section> {% endcomment %}
+<!-- Video News Section -->
 
 {% endblock %}
