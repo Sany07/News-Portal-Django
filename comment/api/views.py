@@ -24,7 +24,7 @@ class CommentList(ListCreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         data = {"message": "Your comment was posted"}
-        return Response({"success": data, "comment": serializer.data}, status=status.HTTP_201_CREATED)
+        return Response({"message": data, "comment": serializer.data}, status=status.HTTP_201_CREATED)
 
 
 # class CommentDetail(RetrieveUpdateDestroyAPIView):
