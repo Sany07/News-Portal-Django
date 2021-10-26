@@ -43,6 +43,6 @@ class CommentsFilterByNews(RetrieveAPIView):
 
     def get(self, *args, **kwargs):
         data = self.queryset.filter(
-            post=self.kwargs['id'],reply=None).order_by('id') #reply=None
+            post=self.kwargs['id'],reply=None).order_by('-id') #reply=None
         comments = CommentSerializer(data, many=True)
         return Response(comments.data, status=status.HTTP_200_OK)
