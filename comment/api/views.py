@@ -1,3 +1,4 @@
+from rest_framework import response
 from rest_framework.decorators import permission_classes
 from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework import permissions
@@ -23,8 +24,8 @@ class CommentList(ListCreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        data = {"message": "Your comment was posted"}
-        return Response({"message": data, "comment": serializer.data}, status=status.HTTP_201_CREATED)
+        response = {"message": "Your comment was posted", "comment": serializer.data}
+        return Response(response, status=status.HTTP_201_CREATED)
 
 
 # class CommentDetail(RetrieveUpdateDestroyAPIView):
