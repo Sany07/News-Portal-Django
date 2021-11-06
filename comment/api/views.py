@@ -14,11 +14,11 @@ from rest_framework import status, serializers
 class CommentList(ListCreateAPIView):
     serializer_class = CommentSerializer
     queryset = serializer_class.Meta.model.objects.all()
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         # print('s', self.request.user)
-        serializer.save()
+        serializer.save(user=self.request.user)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

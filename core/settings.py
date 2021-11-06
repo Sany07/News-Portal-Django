@@ -169,6 +169,6 @@ SIMPLE_JWT = {
 
 CORS_ORIGIN_WHITELIST = (
 'http://localhost:3000',
-'https://itech-9b147.web.app/',
-'https://itech-9b147.firebaseapp.com/'
+'https://itech-9b147.web.app',
+'https://itech-9b147.firebaseapp.com'
 )
