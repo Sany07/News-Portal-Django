@@ -72,7 +72,7 @@ python manage.py runserver
 
 ![Settings Window](https://github.com/Sany07/News-Portal-React/blob/main/ss/06%20-%20iTECH%20-%20itech-9b147.web.app.png)
 
-![Settings Window](https://github.com/Sany07/News-Portal-React/blob/main/ss/07%20-%20iTECH%20-%20itech-9b147.web.app.png)
+![Settings Window](https://github.com/Sany07/News-Portal-React/blob/main/ss/07%20-%20Snippets%20API%20-%20itechportal.herokuapp.com)
 
 <div align="center">
     <h3>========Thank You=========</h3>
