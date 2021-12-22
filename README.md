@@ -3,17 +3,17 @@
 iTeach is a technology magazine platform where Editor can publish news.
   
 
-React version ![Settings Window](https://github.com/Sany07/News-Portal-Django)
+React version  ![Click Here](https://github.com/Sany07/News-Portal-React)
 
 
 ## Installation 
 
 ```
 open terminal and type
-https://github.com/Sany07/Job-Portal.git
+https://github.com/Sany07/News-Portal-Django.git
 
 or simply download using the url below
-https://github.com/Sany07/Job-Portal.git
+https://github.com/Sany07/News-Portal-Django.git
 ```
 
 ## Install requirements
