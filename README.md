@@ -5,6 +5,11 @@ iTeach is a technology magazine platform where Editor can publish news.
 
 React version  ![Click Here](https://github.com/Sany07/News-Portal-React)
 
+Django Version Live Demo ![Click Here](https://itechportal.herokuapp.com) 
+
+React Version Live Demo ![Click Here](https://itech-9b147.web.app/) 
+
+
 
 ## Installation 
 
